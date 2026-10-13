@@ -1,4 +1,4 @@
-package com.example.digibookyteam1.persons.exceptions;
+package com.example.digibookyteam1.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
