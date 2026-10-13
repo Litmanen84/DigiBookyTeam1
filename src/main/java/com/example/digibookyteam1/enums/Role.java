@@ -1,4 +1,4 @@
-package com.example.digibookyteam1.persons.enums;
+package com.example.digibookyteam1.enums;
 
 public enum Role {
     BASE_MEMBER,
