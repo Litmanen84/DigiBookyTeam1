@@ -23,7 +23,10 @@ public class BookService {
     }
 
     public BookDetailsDto getBookByISBN(String isbn) {
-        return bookMapper.toBookDetailsDto(bookRepository.getBookByIsbn(isbn));
+       Book book = bookRepository.getBookByIsbn(isbn)
+               .orElseThrow(()->
+                       new BookNotFoundException(isbn));
+        return bookMapper.toBookDetailsDto(book);
     }
 
 }

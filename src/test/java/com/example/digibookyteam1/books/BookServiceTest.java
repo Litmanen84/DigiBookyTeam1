@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -38,7 +39,7 @@ class BookServiceTest {
         );
         Book book2 = new Book(
                 "745896",
-                "Second bOOK",
+                "Second Book",
                 new Author("Second", "Author"),
                 "Summary2"
         );
@@ -70,8 +71,8 @@ class BookServiceTest {
                 "Summary2"
         );
 
-        when(bookRepository.getBookByIsbn("789456")).thenReturn(book);
-        when(bookRepository.getBookByIsbn("745896")).thenReturn(book2);
+        when(bookRepository.getBookByIsbn("789456")).thenReturn(Optional.of(book));
+        when(bookRepository.getBookByIsbn("745896")).thenReturn(Optional.of(book2));
 
         assertEquals("789456",bookService.getBookByISBN("789456").isbn());
         assertEquals("The Book",bookService.getBookByISBN("789456").title());
@@ -86,6 +87,19 @@ class BookServiceTest {
         assertEquals("Summary2",bookService.getBookByISBN("745896").summary());
 
 
+    }
+
+    @Test
+    void getBookByISBN_ShouldThrowExceptionWhenBookNotFound() {
+        String isbn = "000000";
+
+        when(bookRepository.getBookByIsbn(isbn))
+                .thenReturn(java.util.Optional.empty());
+
+        assertThrows(
+                BookNotFoundException.class,
+                () -> bookService.getBookByISBN(isbn)
+        );
     }
 
 

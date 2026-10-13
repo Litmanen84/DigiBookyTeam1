@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class BookRepository {
@@ -27,10 +28,7 @@ public class BookRepository {
         return books.values();
     }
 
-    public Book getBookByIsbn(String isbn) {
-        if (!books.containsKey(isbn) || isbn == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No book found for this ISBN");
-        }
-       return books.get(isbn);
+    public Optional<Book > getBookByIsbn(String isbn) {
+       return Optional.ofNullable(books.get(isbn));
     }
 }
