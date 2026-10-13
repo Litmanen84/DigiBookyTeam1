@@ -6,14 +6,10 @@ import jakarta.validation.constraints.*;
 public class CreateMemberDTO {
     private String firstName;
 
-    @NotNull(message = "Last name cannot be null")
-    @NotEmpty(message = "Last name cannot be empty")
     @NotBlank(message = "Last name cannot be blank")
     private String lastName;
 
     @Email(message = "Email must be valid")
-    @NotNull(message = "Email cannot be null")
-    @NotEmpty(message = "Email cannot be empty")
     @NotBlank(message = "Email cannot be blank")
     @Pattern(
             regexp = "^[A-Za-z0-9.]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+$",
