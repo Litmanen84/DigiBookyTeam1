@@ -28,8 +28,6 @@ This document outlines the standard requirements that every Product Backlog Item
 - communication channels: Slack channel and zoom breakout rooms
 
 
-
-
 ## Project workflow / Github Issues
 ### I. Backlog
 - Everything that's not for this sprint. Tasks to be defined later. 
@@ -53,6 +51,23 @@ This document outlines the standard requirements that every Product Backlog Item
 - Sort the features according to prioritize. 
 - Every feature is a new branch, when code reviewed this will be pushed and merged. 
 
+
+## Coding standards
+- Classes: 
+  - Exception handling: test every case. 
+  - Error handling: Implement every response annotation. 
+  - log: important warnings.
+
+- Frontend:
+  - Always receives DTO's.
+  - DTO's get handled in the service.
+
+- Controller: contains as little business logic as possible
+- Service: Connects mapper/dto to entity and pass to repository. 
+- Repository: Connects with "database"; 
+  - database will consist of different classes.
+
+- Make use of java doc. 
 
 
 
