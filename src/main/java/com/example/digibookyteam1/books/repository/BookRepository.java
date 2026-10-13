@@ -2,7 +2,9 @@ package com.example.digibookyteam1.books.repository;
 
 import com.example.digibookyteam1.books.Author;
 import com.example.digibookyteam1.books.Book;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,5 +25,12 @@ public class BookRepository {
 
     public Collection<Book> getAllBooks() {
         return books.values();
+    }
+
+    public Book getBookByIsbn(String isbn) {
+        if (!books.containsKey(isbn) || isbn == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No book found for this ISBN");
+        }
+       return books.get(isbn);
     }
 }

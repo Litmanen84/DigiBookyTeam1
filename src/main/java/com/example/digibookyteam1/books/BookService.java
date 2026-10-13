@@ -1,5 +1,6 @@
 package com.example.digibookyteam1.books;
 
+import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
 import com.example.digibookyteam1.books.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,9 @@ public class BookService {
     public List<BookDto> getAllBooks() {
         return bookMapper.toDto(bookRepository.getAllBooks());
     }
+
+    public BookDetailsDto getBookByISBN(String isbn) {
+        return bookMapper.toBookDetailsDto(bookRepository.getBookByIsbn(isbn));
+    }
+
 }
