@@ -1,0 +1,87 @@
+package com.example.digibookyteam1.persons;
+
+import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+
+@WebMvcTest(PersonController.class)
+class PersonControllerTest {
+
+    @Autowired
+
+    MockMvc mockMvc;
+
+    @MockitoBean
+
+    PersonService personService;
+
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    @Test
+    void createPersonWithCorrectDto_returnsCreated() throws Exception {
+
+        CreateMemberDTO correctMember = new CreateMemberDTO(
+
+                "Alex",
+
+                "Morgan",
+
+                "alex.morgan@gmail.com",
+
+                "12345678901",
+
+                new Address("mainstreet", 62, 8452, "Brussels")
+
+        );
+
+        mockMvc.perform(post("/persons")
+
+                        .contentType(MediaType.APPLICATION_JSON)
+
+                        .content(objectMapper.writeValueAsString(correctMember)))
+
+                .andExpect(status().isCreated());
+
+    }
+
+    @Test
+    void createPersonWithInCorrectDto_returnsBadRequest() throws Exception {
+
+        CreateMemberDTO incorrectMember = new CreateMemberDTO(
+
+                "Alex",
+
+                "Morgan",
+
+                "alex.morgan.gmail.com",
+
+                "12345678901",
+
+                new Address("mainstreet", 62, 8452, "Brussels")
+
+        );
+
+        mockMvc.perform(post("/persons")
+
+                        .contentType(MediaType.APPLICATION_JSON)
+
+                        .content(objectMapper.writeValueAsString(incorrectMember)))
+
+                .andExpect(status().isBadRequest());
+
+    }
+
+}
+
+
+
+

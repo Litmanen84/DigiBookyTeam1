@@ -20,6 +20,14 @@ public class CreateMemberDTO {
     private Address address;
     private String INSS;
 
+    public CreateMemberDTO(String firstName, String lastName, String email,  String INSS, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.INSS = INSS;
+        this.email = email;
+    }
+
     public String getFirstName() {
         return firstName;
     }
