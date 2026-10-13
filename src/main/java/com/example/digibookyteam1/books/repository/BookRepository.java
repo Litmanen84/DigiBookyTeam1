@@ -1,7 +1,8 @@
-package com.example.digibookyteam1.books;
+package com.example.digibookyteam1.books.repository;
 
+import com.example.digibookyteam1.books.Author;
+import com.example.digibookyteam1.books.Book;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Collection;
 import java.util.HashMap;

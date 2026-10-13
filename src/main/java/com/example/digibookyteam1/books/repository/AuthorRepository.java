@@ -1,5 +1,6 @@
-package com.example.digibookyteam1.books;
+package com.example.digibookyteam1.books.repository;
 
+import com.example.digibookyteam1.books.Author;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
