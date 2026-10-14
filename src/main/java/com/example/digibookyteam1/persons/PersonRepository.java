@@ -1,6 +1,5 @@
 package com.example.digibookyteam1.persons;
 
-import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

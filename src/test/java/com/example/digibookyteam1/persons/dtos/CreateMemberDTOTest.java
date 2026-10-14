@@ -20,6 +20,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTO = new CreateMemberDTO(
                 "Alex",
                 "",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -39,6 +40,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTO = new CreateMemberDTO(
                 "Alex",
                 "  ",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -58,6 +60,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTO = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -72,10 +75,30 @@ class CreateMemberDTOTest {
     }
 
     @Test
+    void emptyPasswordProducesViolation(){
+        CreateMemberDTO memberDTO = new CreateMemberDTO(
+                "Alex",
+                "Morgan",
+                "",
+                "alex.morgan@gmail.com",
+                "12345678901",
+                new Address("mainstreet", 62, 8452, "Brussels")
+        );
+
+        Set<ConstraintViolation<CreateMemberDTO>> violations =
+                validator.validate(memberDTO);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertTrue(violations.stream().
+                anyMatch(v -> v.getPropertyPath().toString().equals("password"))
+        );
+    }
+
+    @Test
     void wrongEmailProducesViolation() {
         CreateMemberDTO memberDTO = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "alex.morgangmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -94,6 +117,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTO = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "")

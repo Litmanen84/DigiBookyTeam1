@@ -11,6 +11,7 @@ class MemberMappersTest {
     CreateMemberDTO memberDTO = new CreateMemberDTO(
             "Alex",
             "Morgan",
+            "cicala",
             "alex.morgan@gmail.com",
             "12345678901",
             new Address("mainstreet", 62, 8452, "Brussels")
@@ -19,6 +20,7 @@ class MemberMappersTest {
     Member expectedMember = new Member(
             "Alex",
             "Morgan",
+            "cicala",
             "alex.morgan@gmail.com",
             "12345678901",
             new Address("mainstreet", 62, 8452, "Brussels")
@@ -33,6 +35,7 @@ class MemberMappersTest {
         assertAll(
                 () -> assertEquals(expectedMember.getFirstName(), actualMember.getFirstName()),
                 () -> assertEquals(expectedMember.getLastName(), actualMember.getLastName()),
+                () -> assertEquals(expectedMember.getPassword(), actualMember.getPassword()),
                 () -> assertEquals(expectedMember.getEmail(), actualMember.getEmail()),
                 () -> assertEquals(expectedMember.getInss(), actualMember.getInss()),
                 () -> assertEquals(expectedMember.getAddress().getStreet(),
