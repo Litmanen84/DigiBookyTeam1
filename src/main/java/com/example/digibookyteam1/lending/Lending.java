@@ -6,5 +6,5 @@ import com.example.digibookyteam1.persons.Member;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record Lending(Member member, LocalDate dueDate, Book book, UUID lendingId) {
+public record Lending(UUID id, Member member, LocalDate dueDate, Book book) {
 }
