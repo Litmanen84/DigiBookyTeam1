@@ -19,6 +19,7 @@ class PersonServiceTest {
     CreateMemberDTO memberDTO = new CreateMemberDTO(
             "Alex",
             "Morgan",
+            "cicala",
             "alex.morgan@gmail.com",
             "12345678901",
             new Address("mainstreet", 62, 8452, "Brussels")
@@ -42,6 +43,7 @@ class PersonServiceTest {
         Member member = new Member(
                 memberDTO.getFirstName(),
                 memberDTO.getLastName(),
+                memberDTO.getPassword(),
                 memberDTO.getEmail(),
                 memberDTO.getInss(),
                 memberDTO.getAddress()

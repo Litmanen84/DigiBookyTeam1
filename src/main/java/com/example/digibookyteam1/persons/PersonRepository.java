@@ -1,6 +1,5 @@
 package com.example.digibookyteam1.persons;
 
-import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -41,5 +40,7 @@ public class PersonRepository {
 
     public void createAdmin(Staff admin) {
         personDatabase.save(admin);
+    public Optional<Person> getByEmail(String email){
+        return personDatabase.getByEmail(email);
     }
 }

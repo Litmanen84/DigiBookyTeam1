@@ -10,6 +10,9 @@ public class CreateMemberDTO {
     @NotBlank(message = "Last name cannot be blank")
     private String lastName;
 
+    @NotBlank(message = "Password cannot be blank")
+    private String password;
+
     @Email(message = "Email must be valid")
     @NotBlank(message = "Email cannot be blank")
     @Pattern(
@@ -23,12 +26,13 @@ public class CreateMemberDTO {
     private Address address;
 
 
-    public CreateMemberDTO(String firstName, String lastName, String email, String inss, Address address) {
+    public CreateMemberDTO(String firstName, String lastName, String password, String email, String inss, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
-        this.inss = inss;
+        this.password = password;
         this.email = email;
+        this.inss = inss;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -37,6 +41,10 @@ public class CreateMemberDTO {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getEmail() {

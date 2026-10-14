@@ -45,6 +45,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTOEmptyLastName = new CreateMemberDTO(
                 "Alex",
                 "",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -64,6 +65,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTOBlankSpacesLastName = new CreateMemberDTO(
                 "Alex",
                 "  ",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -83,6 +85,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTOEmptyEmail = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -101,16 +104,34 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTOEmptyEmail = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "alex@morgan.com",
                 "",
-                new Address("mainstreet", 62, 8452, "Brussels")
+          new Address("mainstreet", 62, 8452, "Brussels")
         );
-
-        Set<ConstraintViolation<CreateMemberDTO>> violations =
+      Set<ConstraintViolation<CreateMemberDTO>> violations =
                 validator.validate(memberDTOEmptyEmail);
         Assertions.assertFalse(violations.isEmpty());
         Assertions.assertTrue(violations.stream().
                 anyMatch(v -> v.getPropertyPath().toString().equals("inss"))
+        );
+      }
+      
+    void emptyPasswordProducesViolation(){
+        CreateMemberDTO memberDTO = new CreateMemberDTO(
+                "Alex",
+                "Morgan",
+                "",
+                "alex.morgan@gmail.com",
+                "12345678901",
+                new Address("mainstreet", 62, 8452, "Brussels")
+        );
+
+        Set<ConstraintViolation<CreateMemberDTO>> violations =
+                validator.validate(memberDTO);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertTrue(violations.stream().
+                anyMatch(v -> v.getPropertyPath().toString().equals("password"))
         );
     }
 
@@ -119,6 +140,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTOWithWrongEmail = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "alex.morgangmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -137,6 +159,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTOWithoutCity = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "")
