@@ -35,16 +35,8 @@ public class CreateMemberDTO {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -65,9 +57,5 @@ public class CreateMemberDTO {
 
     public String getInss() {
         return inss;
-    }
-
-    public void setInss(String inss) {
-        this.inss = inss;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.digibookyteam1.persons;
 
 import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
+import com.example.digibookyteam1.persons.dtos.CreateStaffDTO;
 import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import com.example.digibookyteam1.persons.enums.Feature;
 import com.example.digibookyteam1.persons.security.SecurityService;
@@ -16,7 +17,6 @@ import java.util.List;
 public class PersonController {
     private final PersonService personService;
     private final SecurityService securityService;
-    private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonController.class);
 
     public PersonController(PersonService personService, SecurityService securityService) {
         this.personService = personService;
@@ -35,4 +35,22 @@ public class PersonController {
         securityService.validateAuthorization(authorization, Feature.VIEW_ALL_MEMBERS);
         return personService.getAllMembers();
     }
+
+    @PostMapping(consumes = "application/json")
+    @RequestMapping("/librarian")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createLibrarian(@Valid @RequestBody CreateStaffDTO  createStaffDTO, @RequestHeader(value = "Authorization", required = false) String authorization) {
+        securityService.validateAuthorization(authorization, Feature.REGISTER_ADMIN_LIBRARIAN);
+        personService.createLibrarian(createStaffDTO);
+    }
+
+    @PostMapping(consumes = "application/json")
+    @RequestMapping("/admin")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createAdmin(@Valid @RequestBody CreateStaffDTO  createStaffDTO, @RequestHeader(value = "Authorization", required = false) String authorization) {
+        securityService.validateAuthorization(authorization, Feature.REGISTER_ADMIN_LIBRARIAN);
+        personService.createAdmin(createStaffDTO);
+    }
+
+
 }
