@@ -34,7 +34,7 @@ class MemberMappersTest {
                 () -> assertEquals(expectedMember.getFirstName(), actualMember.getFirstName()),
                 () -> assertEquals(expectedMember.getLastName(), actualMember.getLastName()),
                 () -> assertEquals(expectedMember.getEmail(), actualMember.getEmail()),
-                () -> assertEquals(expectedMember.getINSS(), actualMember.getINSS()),
+                () -> assertEquals(expectedMember.getInss(), actualMember.getInss()),
                 () -> assertEquals(expectedMember.getAddress().getStreet(),
                         actualMember.getAddress().getStreet()),
                 () -> assertEquals(expectedMember.getAddress().getHouseNumber(),

@@ -1,21 +1,24 @@
 package com.example.digibookyteam1.persons;
 
+import com.example.digibookyteam1.persons.enums.Role;
+
 public class Member extends Person{
-    private String INSS;
+    private String inss;
     private Address address;
 
-    public Member(String firstName, String lastName, String email, String INSS, Address address) {
-        super(firstName, lastName, email);
-        this.INSS = INSS;
+    public Member(String firstName, String lastName, String email, String inss, Address address) {
+        Role role = Role.BASE_MEMBER;
+        super(firstName, lastName, email, role);
+        this.inss = inss;
         this.address = address;
     }
 
-    public String getINSS() {
-        return INSS;
+    public String getInss() {
+        return inss;
     }
 
-    public void setINSS(String INSS) {
-        this.INSS = INSS;
+    public void setInss(String INSS) {
+        this.inss = inss;
     }
 
     public Address getAddress() {

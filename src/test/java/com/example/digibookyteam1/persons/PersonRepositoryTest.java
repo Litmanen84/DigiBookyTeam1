@@ -22,7 +22,7 @@ class PersonRepositoryTest {
             memberDTO.getFirstName(),
             memberDTO.getLastName(),
             memberDTO.getEmail(),
-            memberDTO.getINSS(),
+            memberDTO.getInss(),
             memberDTO.getAddress()
     );
 
@@ -49,14 +49,14 @@ class PersonRepositoryTest {
     void checkUniqueEmailAndINSSReturnsFalseWhenCredentialsAlreadyExist() {
         repo.save(member);
         String email = memberDTO.getEmail();
-        String INSS = memberDTO.getINSS();
+        String INSS = memberDTO.getInss();
         assertFalse(repo.checkUniqueEmailAndINSS(email, INSS));
     }
 
     @Test
     void checkUniqueEmailAndINSSReturnsTrueWhenCredentialsDontExist() {
         String email = memberDTO.getEmail();
-        String INSS = memberDTO.getINSS();
+        String INSS = memberDTO.getInss();
         assertTrue(repo.checkUniqueEmailAndINSS(email, INSS));
     }
 }
