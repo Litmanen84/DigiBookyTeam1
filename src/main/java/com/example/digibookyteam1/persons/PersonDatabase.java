@@ -10,9 +10,8 @@ import java.util.UUID;
 
 @Component
 public class PersonDatabase {
-    Person testAdmin = new Admin("Yves", "Jordy", "yves@jordy.com");
-    Person testMember = new Member("Ciccio", "Magnotta", "ciccio.magnotta@gmail.com", "1276345671", new Address("Via Vai", 12, 81100, "Caserta"));
-    public final List<Person> persons = new ArrayList<>(List.of(testAdmin, testMember)
+    Person testAdmin = new Admin("Yves", "Jordy", "ciao1983", "yves@jordy.com");
+    public final List<Person> persons = new ArrayList<>(List.of(testAdmin)
     );
     private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonDatabase.class);
 
