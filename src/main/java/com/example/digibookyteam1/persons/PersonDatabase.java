@@ -51,6 +51,12 @@ public class PersonDatabase {
                 .toList();
     }
 
+    public Optional<Person> getByEmail(String email){
+        return persons.stream()
+                .filter(person -> person.getEmail().equals(email))
+                .findFirst();
+    }
+
     //ONLY FOR TESTING PURPOSES
     public List<Person> getAllPersons() {
         return persons;

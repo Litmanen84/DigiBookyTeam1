@@ -1,10 +1,14 @@
 package com.example.digibookyteam1.persons.security;
 
 import com.example.digibookyteam1.exceptions.ForbiddenException;
+import com.example.digibookyteam1.exceptions.UnauthorizedException;
 import com.example.digibookyteam1.persons.Person;
 import com.example.digibookyteam1.persons.PersonRepository;
 import com.example.digibookyteam1.persons.enums.Feature;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.UUID;
 
 @Service
@@ -17,13 +21,23 @@ public class SecurityService {
 
     public void validateAuthorization(String authorization, Feature feature){
         if(authorization == null || authorization.isBlank() || !authorization.startsWith("Basic ")){
-            throw new ForbiddenException();
+            throw new UnauthorizedException();
         }
         String strippedAuthentication = authorization.substring(6);
 
-        UUID id = UUID.fromString(strippedAuthentication);
+        String[] credentials = strippedAuthentication.split(":", 2);
+        if (credentials.length != 2) {
+            throw new UnauthorizedException();
+        }
+        String email = credentials[0];
+        String password = credentials[1];
 
-        Person user = repo.getById(id).orElseThrow(NullPointerException::new);
+        Person user = repo.getByEmail(email)
+                .orElseThrow(UnauthorizedException::new);
+
+        if (!user.doesPasswordMatch(password)) {
+            throw new UnauthorizedException();
+        }
 
         if (!user.canHaveAccessTo(feature)) {
             throw new ForbiddenException();

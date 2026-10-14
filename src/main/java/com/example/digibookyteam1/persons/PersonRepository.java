@@ -29,4 +29,8 @@ public class PersonRepository {
     public List<Member> getAllMembers(){
         return personDatabase.getAllMembers();
     }
+
+    public Optional<Person> getByEmail(String email){
+        return personDatabase.getByEmail(email);
+    }
 }
