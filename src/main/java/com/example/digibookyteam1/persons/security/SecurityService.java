@@ -28,7 +28,18 @@ public class SecurityService {
         }
         String strippedAuthentication = authorization.substring(6);
 
-        String[] credentials = strippedAuthentication.split(":", 2);
+        String decodedCredentials;
+
+        try {
+            decodedCredentials = new String(
+                    Base64.getDecoder().decode(strippedAuthentication),
+                    StandardCharsets.UTF_8
+            );
+        } catch (IllegalArgumentException e) {
+            throw new UnauthorizedException();
+        }
+
+        String[] credentials = decodedCredentials.split(":", 2);
         if (credentials.length != 2) {
             throw new UnauthorizedException();
         }
