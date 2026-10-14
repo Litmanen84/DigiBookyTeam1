@@ -1,6 +1,7 @@
 package com.example.digibookyteam1.persons.dtos;
 
 import com.example.digibookyteam1.persons.Address;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 public class CreateMemberDTO {
@@ -16,7 +17,7 @@ public class CreateMemberDTO {
             message = "Email must have the form x@x.x using only letters and numbers"
     )
     private String email;
-
+    @Valid
     private Address address;
     private String INSS;
 
