@@ -40,6 +40,8 @@ public class PersonRepository {
 
     public void createAdmin(Staff admin) {
         personDatabase.save(admin);
+    }
+
     public Optional<Person> getByEmail(String email){
         return personDatabase.getByEmail(email);
     }

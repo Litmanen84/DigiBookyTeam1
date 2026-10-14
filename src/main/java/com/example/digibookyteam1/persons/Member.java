@@ -3,8 +3,6 @@ package com.example.digibookyteam1.persons;
 import com.example.digibookyteam1.persons.enums.Role;
 
 public class Member extends Person{
-    private final String inss;
-    private String password;
     private String inss;
     private Address address;
 

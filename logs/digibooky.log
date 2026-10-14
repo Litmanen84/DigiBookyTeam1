@@ -8,3 +8,8 @@
 2026-10-14T15:44:30.001+02:00  WARN 13632 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
 2026-10-14T15:46:39.369+02:00  WARN 13632 --- [DigiBookyTeam1] [http-nio-8081-exec-5] c.e.d.persons.security.SecurityService   : Authorization received: [null]
 2026-10-14T15:46:39.370+02:00  WARN 13632 --- [DigiBookyTeam1] [http-nio-8081-exec-5] c.e.d.persons.security.SecurityService   : Authorization header is missing or invalid
+2026-10-14T17:35:17.047+02:00  WARN 5504 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-14T17:35:17.048+02:00  WARN 5504 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-14T17:35:17.762+02:00  WARN 5504 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must be valid}, {field=email, message=Email must have the form x@x.x using only letters and numbers}]
+2026-10-14T17:35:17.818+02:00  WARN 5504 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-14T17:35:17.819+02:00  WARN 5504 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists

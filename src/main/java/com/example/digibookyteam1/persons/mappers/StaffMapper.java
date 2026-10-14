@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 public class StaffMapper {
 
     public Staff toLibrarian(CreateStaffDTO createStaffDTO) {
-        return new Librarian(createStaffDTO.getFirstName(), createStaffDTO.getLastName(), createStaffDTO.getEmail());
+        return new Librarian(createStaffDTO.getFirstName(), createStaffDTO.getLastName(), createStaffDTO.getPassword(), createStaffDTO.getEmail());
     }
 
     public Staff toAdmin(CreateStaffDTO createStaffDTO) {
-        return new Admin(createStaffDTO.getFirstName(), createStaffDTO.getLastName(), createStaffDTO.getEmail());
+        return new Admin(createStaffDTO.getFirstName(), createStaffDTO.getLastName(), createStaffDTO.getPassword(), createStaffDTO.getEmail());
     }
 
 }

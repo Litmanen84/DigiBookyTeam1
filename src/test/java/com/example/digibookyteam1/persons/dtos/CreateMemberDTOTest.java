@@ -22,6 +22,7 @@ class CreateMemberDTOTest {
         CreateMemberDTO memberDTO = new CreateMemberDTO(
                 "Alex",
                 "Morgan",
+                "cicala",
                 "alex.morgan@gmail.com",
                 "12345678901",
                 new Address("mainstreet", 62, 8452, "Brussels")
@@ -31,6 +32,7 @@ class CreateMemberDTOTest {
         assertAll(
                 () -> assertEquals("Alex", memberDTO.getFirstName()),
                 () -> assertEquals("Morgan", memberDTO.getLastName()),
+                () -> assertEquals("cicala", memberDTO.getPassword()),
                 () -> assertEquals("alex.morgan@gmail.com", memberDTO.getEmail()),
                 () -> assertEquals("12345678901", memberDTO.getInss()),
                 () -> assertEquals("mainstreet", memberDTO.getAddress().getStreet()),

@@ -7,12 +7,15 @@ public class CreateStaffDTO {
     @NotBlank
     private String lastName;
     @NotBlank
+    private String password;
+    @NotBlank
     private String email;
 
 
-    public CreateStaffDTO(String firstName, String lastName, String email) {
+    public CreateStaffDTO(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.email = email;
     }
 
@@ -22,6 +25,10 @@ public class CreateStaffDTO {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getEmail() {
