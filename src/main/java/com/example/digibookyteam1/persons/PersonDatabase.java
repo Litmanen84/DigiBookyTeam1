@@ -10,7 +10,10 @@ import java.util.UUID;
 
 @Component
 public class PersonDatabase {
-    public final List<Person> persons = new ArrayList<>();
+    Person testAdmin = new Admin("Yves", "Jordy", "yves@jordy.com");
+    Person testMember = new Member("Ciccio", "Magnotta", "ciccio.magnotta@gmail.com", "1276345671", new Address("Via Vai", 12, 81100, "Caserta"));
+    public final List<Person> persons = new ArrayList<>(List.of(testAdmin, testMember)
+    );
     private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonDatabase.class);
 
     public void save(Person member){
@@ -47,6 +50,11 @@ public class PersonDatabase {
                 .filter(Member.class::isInstance)
                 .map(Member.class::cast)
                 .toList();
+    }
+
+    //ONLY FOR TESTING PURPOSES
+    public List<Person> getAllPersons() {
+        return persons;
     }
 
 }
