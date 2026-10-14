@@ -1,6 +1,11 @@
 package com.example.digibookyteam1.persons;
 
+import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class PersonRepository {
@@ -16,5 +21,13 @@ public class PersonRepository {
 
     public boolean checkUniqueEmailAndINSS(String email, String INSS){
         return personDatabase.checkUniqueEmailAndINSS(email, INSS);
+    }
+
+    public Optional<Person> getById(UUID id){
+        return personDatabase.getById(id);
+    }
+
+    public List<Member> getAllMembers(){
+        return personDatabase.getAllMembers();
     }
 }

@@ -19,9 +19,10 @@ public class CreateMemberDTO {
     private String email;
     @Valid
     private Address address;
+    @NotBlank(message = "INSS cannot be blank")
     private String INSS;
 
-    public CreateMemberDTO(String firstName, String lastName, String email,  String INSS, Address address) {
+    public CreateMemberDTO(String firstName, String lastName, String email, String INSS, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

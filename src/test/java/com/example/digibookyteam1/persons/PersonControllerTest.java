@@ -1,6 +1,7 @@
 package com.example.digibookyteam1.persons;
 
 import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
+import com.example.digibookyteam1.persons.security.SecurityService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,11 @@ class PersonControllerTest {
     MockMvc mockMvc;
 
     @MockitoBean
-
     PersonService personService;
+
+    @MockitoBean
+    SecurityService securityService;
+
 
     ObjectMapper objectMapper = new ObjectMapper();
 
