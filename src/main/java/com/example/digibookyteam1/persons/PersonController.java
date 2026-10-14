@@ -36,16 +36,14 @@ public class PersonController {
         return personService.getAllMembers();
     }
 
-    @PostMapping(consumes = "application/json")
-    @RequestMapping("/librarian")
+    @PostMapping(value = "/librarian", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void createLibrarian(@Valid @RequestBody CreateStaffDTO  createStaffDTO, @RequestHeader(value = "Authorization", required = false) String authorization) {
         securityService.validateAuthorization(authorization, Feature.REGISTER_ADMIN_LIBRARIAN);
         personService.createLibrarian(createStaffDTO);
     }
 
-    @PostMapping(consumes = "application/json")
-    @RequestMapping("/admin")
+    @PostMapping(value = "/admin", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void createAdmin(@Valid @RequestBody CreateStaffDTO  createStaffDTO, @RequestHeader(value = "Authorization", required = false) String authorization) {
         securityService.validateAuthorization(authorization, Feature.REGISTER_ADMIN_LIBRARIAN);

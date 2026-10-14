@@ -2,9 +2,6 @@ package com.example.digibookyteam1.persons;
 
 import com.example.digibookyteam1.persons.enums.Feature;
 import com.example.digibookyteam1.persons.enums.Role;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-
 import java.util.UUID;
 
 public abstract class Person {
