@@ -46,6 +46,10 @@ public abstract class Person {
         return role;
     }
 
+    public boolean doesPasswordMatch(String password){
+        return this.password.equals(password);
+    }
+
     public boolean canHaveAccessTo(Feature feature){
         return role.containsFeature(feature);
     }
