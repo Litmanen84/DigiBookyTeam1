@@ -3,6 +3,7 @@ package com.example.digibookyteam1.persons.mappers;
 import com.example.digibookyteam1.persons.Address;
 import com.example.digibookyteam1.persons.Member;
 import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
+import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +18,7 @@ class MemberMappersTest {
             new Address("mainstreet", 62, 8452, "Brussels")
     );
 
-    Member expectedMember = new Member(
+    Member member = new Member(
             "Alex",
             "Morgan",
             "cicala",
@@ -31,6 +32,14 @@ class MemberMappersTest {
     @Test
     void toMemberCreatesAValidMember() {
         Member actualMember = mapper.toMember(memberDTO);
+
+        Member expectedMember = new Member(
+                "Alex",
+                "Morgan",
+                "alex.morgan@gmail.com",
+                "12345678901",
+                new Address("mainstreet", 62, 8452, "Brussels")
+        );
 
         assertAll(
                 () -> assertEquals(expectedMember.getFirstName(), actualMember.getFirstName()),
@@ -46,6 +55,32 @@ class MemberMappersTest {
                         actualMember.getAddress().getPostalCode()),
                 () -> assertEquals(expectedMember.getAddress().getCity(),
                         actualMember.getAddress().getCity())
+        );
+    }
+
+    @Test
+    void toMemberDetailsDTOCreatesValidMemberDetailsDTO() {
+        MemberDetailsDTO expectedMemberDetailsDTO = new MemberDetailsDTO(
+                "Alex",
+                "Morgan",
+                "alex.morgan@gmail.com",
+                new Address("mainstreet", 62, 8452, "Brussels")
+
+        );
+        MemberDetailsDTO actualMemberDetailsDTO = mapper.toMemberDetailsDTO(member);
+
+        assertAll(
+                () -> assertEquals(expectedMemberDetailsDTO.getFirstName(), member.getFirstName()),
+                () -> assertEquals(expectedMemberDetailsDTO.getLastName(), member.getLastName()),
+                () -> assertEquals(expectedMemberDetailsDTO.getEmail(), member.getEmail()),
+                () -> assertEquals(expectedMemberDetailsDTO.getAddress().getStreet(),
+                        member.getAddress().getStreet()),
+                () -> assertEquals(expectedMemberDetailsDTO.getAddress().getHouseNumber(),
+                        member.getAddress().getHouseNumber()),
+                () -> assertEquals(expectedMemberDetailsDTO.getAddress().getPostalCode(),
+                        member.getAddress().getPostalCode()),
+                () -> assertEquals(expectedMemberDetailsDTO.getAddress().getCity(),
+                        member.getAddress().getCity())
         );
     }
 }

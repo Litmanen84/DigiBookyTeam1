@@ -30,6 +30,16 @@ public class PersonRepository {
         return personDatabase.getAllMembers();
     }
 
+    public boolean checkUniqueEmail(String email) {
+        return personDatabase.checkUniqueEmail(email);
+    }
+
+    public void createLibrarian(Staff librarian) {
+        personDatabase.save(librarian);
+    }
+
+    public void createAdmin(Staff admin) {
+        personDatabase.save(admin);
     public Optional<Person> getByEmail(String email){
         return personDatabase.getByEmail(email);
     }

@@ -9,6 +9,10 @@ public abstract class Person {
     private final UUID id;
     private final String firstName;
     private final String lastName;
+    private final String email;
+    private final Role role;
+
+    public Person(String firstName, String lastName, String email, Role role) {
     private final String password;
     private final String email;
     private final Role role;

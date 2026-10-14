@@ -5,6 +5,8 @@ import com.example.digibookyteam1.exceptions.UnauthorizedException;
 import com.example.digibookyteam1.persons.Person;
 import com.example.digibookyteam1.persons.PersonRepository;
 import com.example.digibookyteam1.persons.enums.Feature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -13,6 +15,7 @@ import java.util.UUID;
 
 @Service
 public class SecurityService {
+    private static final Logger log = LoggerFactory.getLogger(SecurityService.class);
     private final PersonRepository repo;
 
     public SecurityService(PersonRepository repo) {
@@ -40,6 +43,7 @@ public class SecurityService {
         }
 
         if (!user.canHaveAccessTo(feature)) {
+            log.warn("User {} tried to access {} but doesn't have permission", user.getId(), feature);
             throw new ForbiddenException();
         }
     }

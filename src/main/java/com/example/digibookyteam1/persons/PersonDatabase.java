@@ -15,8 +15,8 @@ public class PersonDatabase {
     );
     private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonDatabase.class);
 
-    public void save(Person member){
-        persons.add(member);
+    public void save(Person person){
+        persons.add(person);
     }
 
     public boolean checkUniqueEmailAndINSS(String email, String inss){
@@ -62,4 +62,15 @@ public class PersonDatabase {
         return persons;
     }
 
+    public boolean checkUniqueEmail(String email) {
+        boolean emailIsUnique = persons.stream()
+                .noneMatch(person -> email.equals(person.getEmail()));
+
+        if(!emailIsUnique){
+            logger.warn("Email already exists");
+        }
+
+        return emailIsUnique;
+
+    }
 }
