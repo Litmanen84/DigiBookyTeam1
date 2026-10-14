@@ -26,7 +26,7 @@ public class PersonController {
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void createPerson(@Valid @RequestBody CreateMemberDTO createMemberDTO) {
-        logger.warn("Received INSS: {}", createMemberDTO.getINSS());
+        logger.warn("Received INSS: {}", createMemberDTO.getInss());
         personService.createMember(createMemberDTO);
     }
 

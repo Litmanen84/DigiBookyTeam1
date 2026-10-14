@@ -17,7 +17,7 @@ public class PersonDatabase {
         persons.add(member);
     }
 
-    public boolean checkUniqueEmailAndINSS(String email, String INSS){
+    public boolean checkUniqueEmailAndINSS(String email, String inss){
         boolean emailIsUnique = persons.stream()
                 .noneMatch(person -> email.equals(person.getEmail()));
 
@@ -27,7 +27,7 @@ public class PersonDatabase {
         boolean inssIsUnique = persons.stream()
                 .filter(Member.class::isInstance)
                 .map(Member.class::cast)
-                .noneMatch(member -> INSS.equals(member.getINSS()));
+                .noneMatch(member -> inss.equals(member.getInss()));
 
         if(!inssIsUnique){
             logger.warn("INSS already exists");

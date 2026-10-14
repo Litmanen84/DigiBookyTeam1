@@ -17,16 +17,17 @@ public class CreateMemberDTO {
             message = "Email must have the form x@x.x using only letters and numbers"
     )
     private String email;
+    @NotBlank(message = "INSS cannot be blank")
+    private String inss;
     @Valid
     private Address address;
-    @NotBlank(message = "INSS cannot be blank")
-    private String INSS;
 
-    public CreateMemberDTO(String firstName, String lastName, String email, String INSS, Address address) {
+
+    public CreateMemberDTO(String firstName, String lastName, String email, String inss, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.INSS = INSS;
+        this.inss = inss;
         this.email = email;
     }
 
@@ -62,11 +63,11 @@ public class CreateMemberDTO {
         this.address = address;
     }
 
-    public String getINSS() {
-        return INSS;
+    public String getInss() {
+        return inss;
     }
 
-    public void setINSS(String INSS) {
-        this.INSS = INSS;
+    public void setInss(String inss) {
+        this.inss = inss;
     }
 }

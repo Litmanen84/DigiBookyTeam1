@@ -23,7 +23,7 @@ public class PersonService {
     }
 
     public void createMember(CreateMemberDTO createMemberDTO){
-        if(!checkEmailAndINSSAreUnique(createMemberDTO.getEmail(), createMemberDTO.getINSS())) {
+        if(!checkEmailAndINSSAreUnique(createMemberDTO.getEmail(), createMemberDTO.getInss())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Credentials already exist");
         };
         Member member = mapper.toMember(createMemberDTO);

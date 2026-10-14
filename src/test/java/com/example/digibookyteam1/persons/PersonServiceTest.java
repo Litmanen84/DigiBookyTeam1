@@ -35,7 +35,7 @@ class PersonServiceTest {
     @Test
     void createMemberWithCorrectDto_savesMember() {
         String correctEmail = memberDTO.getEmail();
-        String correctINSS = memberDTO.getINSS();
+        String correctINSS = memberDTO.getInss();
         Mockito.when(repo.checkUniqueEmailAndINSS(correctEmail, correctINSS))
                 .thenReturn(true);
 
@@ -43,7 +43,7 @@ class PersonServiceTest {
                 memberDTO.getFirstName(),
                 memberDTO.getLastName(),
                 memberDTO.getEmail(),
-                memberDTO.getINSS(),
+                memberDTO.getInss(),
                 memberDTO.getAddress()
         );
 
@@ -56,7 +56,7 @@ class PersonServiceTest {
     @Test
     void createMemberWithAlreadyExistingEmailOrINSS_throwsConflict() {
         String Email = memberDTO.getEmail();
-        String INSS = memberDTO.getINSS();
+        String INSS = memberDTO.getInss();
         Mockito.when(repo.checkUniqueEmailAndINSS(Email, INSS))
                 .thenReturn(false);
 

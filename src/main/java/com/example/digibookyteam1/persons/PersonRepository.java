@@ -19,8 +19,8 @@ public class PersonRepository {
         personDatabase.save(member);
     }
 
-    public boolean checkUniqueEmailAndINSS(String email, String INSS){
-        return personDatabase.checkUniqueEmailAndINSS(email, INSS);
+    public boolean checkUniqueEmailAndINSS(String email, String inss){
+        return personDatabase.checkUniqueEmailAndINSS(email, inss);
     }
 
     public Optional<Person> getById(UUID id){
