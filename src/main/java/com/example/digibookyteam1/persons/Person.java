@@ -2,21 +2,20 @@ package com.example.digibookyteam1.persons;
 
 import com.example.digibookyteam1.persons.enums.Feature;
 import com.example.digibookyteam1.persons.enums.Role;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-
 import java.util.UUID;
 
 public abstract class Person {
-    private UUID id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Role role;
+    private final UUID id;
+    private final String firstName;
+    private final String lastName;
+    private final String password;
+    private final String email;
+    private final Role role;
 
-    public Person(String firstName, String lastName, String email, Role role) {
+    public Person(String firstName, String lastName, String password, String email, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.email = email;
         this.role = role;
         this.id = UUID.randomUUID();
@@ -26,36 +25,28 @@ public abstract class Person {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getPassword() {
+        return password;
     }
 
     public Role getRole() {
         return role;
+    }
+
+    public boolean doesPasswordMatch(String password){
+        return this.password.equals(password);
     }
 
     public boolean canHaveAccessTo(Feature feature){

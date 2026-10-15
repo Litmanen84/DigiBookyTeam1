@@ -36,13 +36,10 @@ class PersonControllerTest {
         CreateMemberDTO correctMember = new CreateMemberDTO(
 
                 "Alex",
-
                 "Morgan",
-
+                "cicala",
                 "alex.morgan@gmail.com",
-
                 "12345678901",
-
                 new Address("mainstreet", 62, 8452, "Brussels")
 
         );
@@ -63,13 +60,10 @@ class PersonControllerTest {
         CreateMemberDTO incorrectMember = new CreateMemberDTO(
 
                 "Alex",
-
                 "Morgan",
-
+                "cicala",
                 "alex.morgan.gmail.com",
-
                 "12345678901",
-
                 new Address("mainstreet", 62, 8452, "Brussels")
 
         );

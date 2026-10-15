@@ -10,14 +10,13 @@ import java.util.UUID;
 
 @Component
 public class PersonDatabase {
-    Person testAdmin = new Admin("Yves", "Jordy", "yves@jordy.com");
-    Person testMember = new Member("Ciccio", "Magnotta", "ciccio.magnotta@gmail.com", "1276345671", new Address("Via Vai", 12, 81100, "Caserta"));
-    public final List<Person> persons = new ArrayList<>(List.of(testAdmin, testMember)
+    Person testAdmin = new Admin("Yves", "Jordy", "ciao1983", "yves@jordy.com");
+    public final List<Person> persons = new ArrayList<>(List.of(testAdmin)
     );
     private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonDatabase.class);
 
-    public void save(Person member){
-        persons.add(member);
+    public void save(Person person){
+        persons.add(person);
     }
 
     public boolean checkUniqueEmailAndINSS(String email, String inss){
@@ -52,9 +51,26 @@ public class PersonDatabase {
                 .toList();
     }
 
+    public Optional<Person> getByEmail(String email){
+        return persons.stream()
+                .filter(person -> person.getEmail().equals(email))
+                .findFirst();
+    }
+
     //ONLY FOR TESTING PURPOSES
     public List<Person> getAllPersons() {
         return persons;
     }
 
+    public boolean checkUniqueEmail(String email) {
+        boolean emailIsUnique = persons.stream()
+                .noneMatch(person -> email.equals(person.getEmail()));
+
+        if(!emailIsUnique){
+            logger.warn("Email already exists");
+        }
+
+        return emailIsUnique;
+
+    }
 }
