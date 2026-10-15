@@ -47,7 +47,7 @@ public class LendingService {
         Lending lending = new Lending(
                 UUID.randomUUID(),
                 (Member) member, // TODO hmmm shouldn't cast like that - PersonService?
-                LocalDate.now().plusDays(3),
+                LocalDate.now().plusWeeks(3),
                 book);
 
         return lendingMapper.toDto(lending);
