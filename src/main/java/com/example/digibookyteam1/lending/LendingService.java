@@ -10,7 +10,6 @@ import com.example.digibookyteam1.persons.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,7 +20,10 @@ public class LendingService {
     BookRepository bookRepository; // TODO same remark but BookService getByISBN returns a BookDetailsDTO
     LendingMapper lendingMapper;
 
-    public LendingService(LendingRepository lendingRepository, PersonRepository personRepository, BookRepository bookRepository, LendingMapper lendingMapper) {
+    public LendingService(LendingRepository lendingRepository,
+                          PersonRepository personRepository,
+                          BookRepository bookRepository,
+                          LendingMapper lendingMapper) {
         this.lendingRepository = lendingRepository;
         this.personRepository = personRepository;
         this.bookRepository = bookRepository;
