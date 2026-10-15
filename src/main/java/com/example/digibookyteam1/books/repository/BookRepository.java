@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public class BookRepository {
-    private Map<String, Book> books = new HashMap<>();
+    private final Map<String, Book> books = new HashMap<>();
 
     public BookRepository() {
         books.put("123456",

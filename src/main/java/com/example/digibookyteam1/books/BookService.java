@@ -23,6 +23,7 @@ public class BookService {
     }
 
     public BookDetailsDto getBookByISBN(String isbn) {
+        // TODO shouldn't this return a Book ? Otherwise I need to use BookMapper every time I need to get a Book from an ISBN
        Book book = bookRepository.getBookByIsbn(isbn)
                .orElseThrow(()->
                        new BookNotFoundException(isbn));
