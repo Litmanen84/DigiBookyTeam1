@@ -1,6 +1,8 @@
 package com.example.digibookyteam1.lending.api;
 
+import com.example.digibookyteam1.lending.Lending;
 import com.example.digibookyteam1.lending.LendingService;
+import com.example.digibookyteam1.lending.ReturnBookResult;
 import com.example.digibookyteam1.persons.Person;
 import com.example.digibookyteam1.persons.PersonService;
 import com.example.digibookyteam1.persons.enums.Feature;
@@ -49,6 +51,33 @@ class LendingControllerTest {
 
        assertEquals(expectedDTO, lendingDTO);
       verify(securityService).validateAuthorization(any(), eq(Feature.BASE_ACCESS));
+   }
+
+   @Test
+    void SuccessMessageWhenReturnedOnTime(){
+       UUID lendingId = UUID.randomUUID();
+
+       Lending lending = mock(Lending.class);
+       ReturnBookResult returnBookResult = new ReturnBookResult(lending,false);
+
+       when(lendingService.returnBook(lendingId)).thenReturn(returnBookResult);
+
+       ReturnBookResponse returnBookResponse = lendingController.returnBook(lendingId);
+
+       assertEquals("Book has been returned", returnBookResponse.message());
+   }
+
+   @Test
+   void LateMessageWhenReturnedOnBookLate(){
+       UUID lendingId = UUID.randomUUID();
+       Lending lending = mock(Lending.class);
+       ReturnBookResult returnBookResult = new ReturnBookResult(lending,true);
+
+       when(lendingService.returnBook(lendingId)).thenReturn(returnBookResult);
+
+       ReturnBookResponse returnBookResponse = lendingController.returnBook(lendingId);
+
+       assertEquals("Book has been returned but YOU ARE LATE MATE", returnBookResponse.message());
    }
 
 }
