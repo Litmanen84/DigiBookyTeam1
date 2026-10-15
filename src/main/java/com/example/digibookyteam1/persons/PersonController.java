@@ -29,7 +29,7 @@ public class PersonController {
         personService.createMember(createMemberDTO);
     }
 
-    @GetMapping(consumes = "application/json", produces = "application/json")
+    @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<MemberDetailsDTO> getAllMembers(@RequestHeader(value = "Authorization", required = false) String authorization) {
         securityService.validateAuthorization(authorization, Feature.VIEW_ALL_MEMBERS);
