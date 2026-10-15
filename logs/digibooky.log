@@ -32,3 +32,16 @@
 2026-10-15T11:44:55.232+02:00  WARN 28952 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-15T11:44:55.242+02:00  WARN 28952 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-15T11:44:55.243+02:00  WARN 28952 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T12:50:17.936+02:00  WARN 6940 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-15T12:50:17.939+02:00  WARN 6940 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-15T12:50:19.343+02:00  WARN 6940 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must have the form x@x.x using only letters and numbers}, {field=email, message=Email must be valid}]
+2026-10-15T12:50:19.516+02:00  WARN 6940 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T12:50:19.537+02:00  WARN 6940 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T12:50:19.538+02:00  WARN 6940 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T12:58:57.739+02:00  WARN 31276 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-15T12:58:57.741+02:00  WARN 31276 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-15T12:58:58.902+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must be valid, field=email}, {message=Email must have the form x@x.x using only letters and numbers, field=email}]
+2026-10-15T12:58:59.056+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T12:58:59.075+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T12:58:59.076+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T12:58:59.149+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 5b2ad255-fed7-400e-9457-62c08ea32a66 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
