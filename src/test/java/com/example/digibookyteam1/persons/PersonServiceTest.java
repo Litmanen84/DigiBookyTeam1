@@ -1,10 +1,12 @@
 package com.example.digibookyteam1.persons;
 
+import com.example.digibookyteam1.exceptions.UnauthorizedException;
 import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
 import com.example.digibookyteam1.persons.dtos.CreateStaffDTO;
 import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import com.example.digibookyteam1.persons.mappers.MemberMappers;
 import com.example.digibookyteam1.persons.mappers.StaffMapper;
+import com.example.digibookyteam1.persons.security.AuthorizationDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -147,5 +150,67 @@ class PersonServiceTest {
         when(repo.checkUniqueEmail(adminDTO.getEmail()))
                 .thenReturn(false);
         assertThrows(ResponseStatusException.class, () -> service.createAdmin(adminDTO));
+    }
+
+    @Test
+    void getByEmailReturnsAPerson() {
+        Person expected = new Member("Ciccio",
+                "Magnotta",
+                "magnotta",
+                "magnotta@gmail.com",
+                "1234567890",
+                new Address(
+                        "Via Roma", 23, 1000, "Caserta"
+                )
+        );
+        String email = "ciccio@magnotta.it";
+        when(repo.getByEmail(email)).thenReturn(Optional.of(expected));
+        Person result = service.getByEmail(email);
+        assertSame(expected, result);
+        verify(repo).getByEmail(email);
+    }
+
+    @Test
+    void resolveUserReturnsAPerson() {
+        String authorization = "Basic Y2ljY2lvOm1hZ25vdHRh";
+        // Decodes to "ciccio:magnotta"
+        Person expected = new Member("Ciccio",
+                "Magnotta",
+                "magnotta",
+                "magnotta@gmail.com",
+                "1234567890",
+                new Address(
+                        "Via Roma", 23, 1000, "Caserta"
+                )
+        );
+        when(repo.getByEmail("ciccio")).thenReturn(Optional.of(expected));
+
+        Person result = service.resolveUser(authorization);
+        assertNotNull(result);
+        assertSame(expected, result);
+        verify(repo).getByEmail("ciccio");
+    }
+
+    @Test
+    void resolveUserThrowsExceptionWhenUserNotFound() {
+        String authorization = "Basic Y2ljY2lvOm1hZ25vdHRh";
+        when(repo.getByEmail("ciccio")).thenReturn(Optional.empty());
+        assertThrows(RuntimeException.class, () -> service.resolveUser(authorization));
+    }
+
+    @Test
+    void getAuthDTOReturnsAuthorizationDTO() {
+        String authorization = "Basic Y2ljY2lvOm1hZ25vdHRh";
+
+        AuthorizationDTO result = service.getAuthDTO(authorization);
+
+        assertEquals("ciccio", result.getEmail());
+        assertEquals("magnotta", result.getPassword());
+    }
+
+    @Test
+    void getAuthDTODoNotReturnsAuthorizationDTOWithWrongAuthorizationHeader() {
+        String authorization = "Basic Y2ljY2lvO";
+        assertThrows(UnauthorizedException.class, () -> service.getAuthDTO(authorization));
     }
 }

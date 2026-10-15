@@ -123,3 +123,31 @@ com.example.digibookyteam1.books.BookNotFoundException: 9780000000002 not found
 2026-10-15T13:54:48.164+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-15T13:54:48.165+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
 2026-10-15T13:54:48.311+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 105a6138-53f5-4da7-8fac-3828c5c36c7f tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-15T13:23:47.342+02:00  WARN 21476 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-15T13:23:47.343+02:00  WARN 21476 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-15T13:23:48.313+02:00  WARN 21476 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must be valid, field=email}, {message=Email must have the form x@x.x using only letters and numbers, field=email}]
+2026-10-15T13:23:48.435+02:00  WARN 21476 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:23:48.451+02:00  WARN 21476 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:23:48.452+02:00  WARN 21476 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T13:23:48.509+02:00  WARN 21476 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 57668e2e-41ad-4600-935c-afdd49fdd08e tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-15T13:49:23.905+02:00  WARN 29196 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-15T13:49:23.907+02:00  WARN 29196 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-15T13:49:24.822+02:00  WARN 29196 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must have the form x@x.x using only letters and numbers}, {field=email, message=Email must be valid}]
+2026-10-15T13:49:24.940+02:00  WARN 29196 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:49:24.950+02:00  WARN 29196 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:49:24.950+02:00  WARN 29196 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T13:49:25.002+02:00  WARN 29196 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 3996fdec-5fd2-4661-90fd-fdc689eac419 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-15T13:56:36.773+02:00  WARN 23176 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-15T13:56:36.774+02:00  WARN 23176 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-15T13:56:37.589+02:00  WARN 23176 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must be valid, field=email}, {message=Email must have the form x@x.x using only letters and numbers, field=email}]
+2026-10-15T13:56:37.705+02:00  WARN 23176 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:56:37.715+02:00  WARN 23176 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:56:37.715+02:00  WARN 23176 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T13:56:37.761+02:00  WARN 23176 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 8f3357a4-fd0e-4cf3-9750-8d54bc5c8c66 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-15T13:57:11.375+02:00  WARN 24216 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-15T13:57:11.378+02:00  WARN 24216 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-15T13:57:12.188+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must be valid}, {field=email, message=Email must have the form x@x.x using only letters and numbers}]
+2026-10-15T13:57:12.307+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:57:12.314+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-15T13:57:12.314+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-15T13:57:12.373+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User eee2cf23-4f5d-4c1a-a14e-62d2f9d2494a tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
