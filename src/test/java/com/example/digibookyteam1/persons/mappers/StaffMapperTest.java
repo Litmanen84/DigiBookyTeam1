@@ -3,47 +3,40 @@ package com.example.digibookyteam1.persons.mappers;
 import com.example.digibookyteam1.persons.Admin;
 import com.example.digibookyteam1.persons.Librarian;
 import com.example.digibookyteam1.persons.dtos.CreateStaffDTO;
+import com.example.digibookyteam1.persons.enums.Role;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StaffMapperTest {
-    CreateStaffDTO actual = new CreateStaffDTO(
-            "Ciccio",
-            "Magnotta",
-            "cicala",
-            "ciccio@magnotta.it"
-    );
+    private final StaffMapper mapper = new StaffMapper();
+
+    private final CreateStaffDTO dto =
+            new CreateStaffDTO("Ciccio", "Magnotta", "cicala", "ciccio@magnotta.it");
 
     @Test
-    void toLibrarianCreatesValidLibrarian() {
-        Librarian expectedLibrarian = new Librarian(
-                "Ciccio",
-                "Magnotta",
-                "cicala",
-                "ciccio@magnotta.it"
-        );
+    void toLibrarianCreatesLibrarianFromDto() {
+        Librarian result = (Librarian) mapper.toLibrarian(dto);
+
         assertAll(
-                () -> assertEquals(expectedLibrarian.getFirstName(), actual.getFirstName()),
-                () -> assertEquals(expectedLibrarian.getLastName(), actual.getLastName()),
-                () -> assertEquals(expectedLibrarian.getPassword(), actual.getPassword()),
-                () -> assertEquals(expectedLibrarian.getEmail(), actual.getEmail())
+                () -> assertEquals(dto.getFirstName(), result.getFirstName()),
+                () -> assertEquals(dto.getLastName(), result.getLastName()),
+                () -> assertEquals(dto.getPassword(), result.getPassword()),
+                () -> assertEquals(dto.getEmail(), result.getEmail()),
+                () -> assertEquals(Role.LIBRARIAN, result.getRole())
         );
     }
 
     @Test
-    void toAdminCreatesValidAdmin() {
-        Admin expectedAdmin = new Admin(
-                "Ciccio",
-                "Magnotta",
-                "cicala",
-                "ciccio@magnotta.it"
-        );
+    void toAdminCreatesAdminFromDto() {
+        Admin result = (Admin) mapper.toAdmin(dto);
+
         assertAll(
-                () -> assertEquals(expectedAdmin.getFirstName(), actual.getFirstName()),
-                () -> assertEquals(expectedAdmin.getLastName(), actual.getLastName()),
-                () -> assertEquals(expectedAdmin.getPassword(), actual.getPassword()),
-                () -> assertEquals(expectedAdmin.getEmail(), actual.getEmail())
+                () -> assertEquals(dto.getFirstName(), result.getFirstName()),
+                () -> assertEquals(dto.getLastName(), result.getLastName()),
+                () -> assertEquals(dto.getPassword(), result.getPassword()),
+                () -> assertEquals(dto.getEmail(), result.getEmail()),
+                () -> assertEquals(Role.ADMIN, result.getRole())
         );
     }
 }
