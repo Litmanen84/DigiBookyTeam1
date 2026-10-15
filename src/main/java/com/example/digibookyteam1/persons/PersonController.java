@@ -7,7 +7,6 @@ import com.example.digibookyteam1.persons.enums.Feature;
 import com.example.digibookyteam1.persons.security.SecurityService;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class PersonController {
         personService.createMember(createMemberDTO);
     }
 
-    @GetMapping(consumes = "application/json", produces = "application/json")
+    @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<MemberDetailsDTO> getAllMembers(@RequestHeader(value = "Authorization", required = false) String authorization) {
         securityService.validateAuthorization(authorization, Feature.VIEW_ALL_MEMBERS);

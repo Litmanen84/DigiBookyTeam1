@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.UUID;
 
 @Service
 public class SecurityService {
@@ -22,7 +21,7 @@ public class SecurityService {
         this.repo = repo;
     }
 
-    public void validateAuthorization(String authorization, Feature feature){
+    public Person validateAuthorization(String authorization, Feature feature){
         if(authorization == null || authorization.isBlank() || !authorization.startsWith("Basic ")){
             throw new UnauthorizedException();
         }
@@ -57,5 +56,6 @@ public class SecurityService {
             log.warn("User {} tried to access {} but doesn't have permission", user.getId(), feature);
             throw new ForbiddenException();
         }
+        return user;
     }
 }
