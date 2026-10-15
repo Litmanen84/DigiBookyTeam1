@@ -49,6 +49,7 @@ public class LendingService {
                 (Member) member,
                 LocalDate.now().plusWeeks(3),
                 book);
+        lendingRepository.save(lending);
 
         return lendingMapper.toDto(lending);
     }
