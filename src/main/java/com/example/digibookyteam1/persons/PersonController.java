@@ -4,6 +4,7 @@ import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
 import com.example.digibookyteam1.persons.dtos.CreateStaffDTO;
 import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import com.example.digibookyteam1.persons.enums.Feature;
+import com.example.digibookyteam1.persons.security.AuthorizationDTO;
 import com.example.digibookyteam1.persons.security.SecurityService;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;

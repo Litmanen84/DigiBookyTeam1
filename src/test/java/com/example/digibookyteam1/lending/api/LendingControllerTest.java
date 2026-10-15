@@ -2,6 +2,7 @@ package com.example.digibookyteam1.lending.api;
 
 import com.example.digibookyteam1.lending.LendingService;
 import com.example.digibookyteam1.persons.Person;
+import com.example.digibookyteam1.persons.PersonService;
 import com.example.digibookyteam1.persons.enums.Feature;
 import com.example.digibookyteam1.persons.security.SecurityService;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LendingControllerTest {
@@ -23,6 +23,8 @@ class LendingControllerTest {
    private LendingService lendingService;
    @Mock
    private SecurityService securityService;
+   @Mock
+   private PersonService personService;
    @InjectMocks
    private LendingController lendingController;
 
@@ -33,8 +35,7 @@ class LendingControllerTest {
 
        when(person.getId()).thenReturn(id);
 
-       when(securityService.validateAuthorization(any(),eq(Feature.BASE_ACCESS)
-       )).thenReturn(person);
+      when(personService.resolveUser(any())).thenReturn(person);
 
        LendingDTO expectedDTO = mock(LendingDTO.class);
 
@@ -47,6 +48,7 @@ class LendingControllerTest {
                "123456", "Basic fake-credentials");
 
        assertEquals(expectedDTO, lendingDTO);
+      verify(securityService).validateAuthorization(any(), eq(Feature.BASE_ACCESS));
    }
 
 }

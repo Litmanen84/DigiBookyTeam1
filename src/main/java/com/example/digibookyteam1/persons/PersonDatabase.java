@@ -3,18 +3,20 @@ package com.example.digibookyteam1.persons;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class PersonDatabase {
     Person testAdmin = new Admin("Yves", "Jordy", "ciao1983", "yves@jordy.com");
-    Member testMember = new Member("Pietro", "Pietro", "pwd123", "pietro@pietro.com", "12.34.56-789.12",
-            new Address("Example Street", 12, 3456, "Example City"));
+//    Member testMember = new Member("Pietro", "Pietro", "pwd123", "pietro@pietro.com", "12.34.56-789.12",
+//            new Address("Example Street", 12, 3456, "Example City"));
 
-    public final List<Person> persons = new ArrayList<>(List.of(testAdmin, testMember)
+    public final List<Person> persons = new ArrayList<>(List.of(testAdmin)
     );
     private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonDatabase.class);
 

@@ -1,16 +1,20 @@
 package com.example.digibookyteam1.persons;
 
+import com.example.digibookyteam1.exceptions.UnauthorizedException;
 import com.example.digibookyteam1.persons.dtos.CreateMemberDTO;
 import com.example.digibookyteam1.persons.dtos.CreateStaffDTO;
 import com.example.digibookyteam1.persons.dtos.MemberDetailsDTO;
 import com.example.digibookyteam1.persons.mappers.MemberMappers;
 import com.example.digibookyteam1.persons.mappers.StaffMapper;
+import com.example.digibookyteam1.persons.security.AuthorizationDTO;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -69,4 +73,36 @@ public class PersonService {
         }
     }
 
+    public AuthorizationDTO getAuthDTO(String authorization){
+        String strippedAuthentication = authorization.substring(6);
+
+        String decodedCredentials;
+
+        try {
+            decodedCredentials = new String(
+                    Base64.getDecoder().decode(strippedAuthentication),
+                    StandardCharsets.UTF_8
+            );
+        } catch (IllegalArgumentException e) {
+            throw new UnauthorizedException();
+        }
+
+        String[] credentials = decodedCredentials.split(":", 2);
+        if (credentials.length != 2) {
+            throw new UnauthorizedException();
+        }
+
+        return new AuthorizationDTO(credentials[0], credentials[1]);
+    }
+
+    public Person getByEmail(String email) {
+        return repo.getByEmail(email)
+                .orElseThrow(RuntimeException::new);
+    }
+
+    public Person resolveUser(String authorization){
+        AuthorizationDTO auth = getAuthDTO(authorization);
+        Person person = getByEmail(auth.getEmail());
+        return person;
+    }
 }
