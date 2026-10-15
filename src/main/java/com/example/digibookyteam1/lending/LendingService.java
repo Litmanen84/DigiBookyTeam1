@@ -44,6 +44,10 @@ public class LendingService {
         Book book = bookRepository.getBookByIsbn(isbn)
                 .orElseThrow(() -> new BookNotFoundException(isbn));
 
+        if (lendingRepository.isBookCurrentlyLent(isbn)) {
+            throw new BookAlreadyLentException(isbn);
+        }
+
         Lending lending = new Lending(
                 UUID.randomUUID(),
                 (Member) member,
