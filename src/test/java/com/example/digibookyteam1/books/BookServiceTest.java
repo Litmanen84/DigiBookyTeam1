@@ -1,5 +1,4 @@
-
-        package com.example.digibookyteam1.books;
+package com.example.digibookyteam1.books;
 
 import com.example.digibookyteam1.books.api.dto.BookDto;
 import com.example.digibookyteam1.books.repository.BookRepository;

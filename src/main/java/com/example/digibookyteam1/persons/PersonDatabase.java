@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 @Component
 public class PersonDatabase {
     Person testAdmin = new Admin("Yves", "Jordy", "ciao1983", "yves@jordy.com");
+//    Member testMember = new Member("Pietro", "Pietro", "pwd123", "pietro@pietro.com", "12.34.56-789.12",
+//            new Address("Example Street", 12, 3456, "Example City"));
+
     public final List<Person> persons = new ArrayList<>(List.of(testAdmin)
     );
     private Logger logger = org.slf4j.LoggerFactory.getLogger(PersonDatabase.class);

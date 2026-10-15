@@ -8,7 +8,6 @@ import com.example.digibookyteam1.persons.security.AuthorizationDTO;
 import com.example.digibookyteam1.persons.security.SecurityService;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;

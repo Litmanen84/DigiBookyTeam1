@@ -1,13 +1,9 @@
 package com.example.digibookyteam1.lending;
 
-import com.example.digibookyteam1.books.Book;
-import com.example.digibookyteam1.persons.Member;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -21,4 +17,8 @@ public class LendingRepository {
         return lending;
     }
 
+    public boolean isBookCurrentlyLent(String isbn) {
+        return ongoingLendings.values().stream()
+                .anyMatch(lending -> isbn.equals(lending.book().getIsbn()));
+    }
 }
