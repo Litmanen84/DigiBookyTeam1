@@ -3,6 +3,7 @@ package com.example.digibookyteam1.books;
 import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
 import com.example.digibookyteam1.books.repository.BookRepository;
+import com.example.digibookyteam1.exceptions.BookNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +23,37 @@ public class BookService {
         return bookMapper.toDto(bookRepository.getAllBooks());
     }
 
-    public BookDetailsDto getBookByISBN(String isbn) {
-        // TODO shouldn't this return a Book ? Otherwise I need to use BookMapper every time I need to get a Book from an ISBN
-       Book book = bookRepository.getBookByIsbn(isbn)
-               .orElseThrow(()->
-                       new BookNotFoundException(isbn));
+    public BookDetailsDto getBookById(String isbn) {
+
+        Book book = bookRepository.getBookByIsbn(isbn)
+                .orElseThrow(() ->
+                        new BookNotFoundException(isbn));
         return bookMapper.toBookDetailsDto(book);
     }
 
+    public List<BookDto> getBooksByIsbn(String isbn) {
+        String extractedIsbnNumbers = isbn.replaceAll("\\D", "");
+        List<Book> books = List.of();
+
+
+        int length = extractedIsbnNumbers.length();
+
+        if (length > 13) throw new IllegalArgumentException("ISBN too long");
+
+        if (length == 13) {
+           books = bookRepository.getBookByIsbn(extractedIsbnNumbers).stream().toList();
+        }
+
+        if (length < 13){
+            books = bookRepository.getBooksByPartOfIsbn(extractedIsbnNumbers);
+        }
+
+        if (!books.isEmpty()) {
+           return books.stream()
+                   .map(b -> bookMapper.toDto(b))
+                   .toList();
+        } else  {
+            throw new BookNotFoundException(isbn);
+        }
+    }
 }

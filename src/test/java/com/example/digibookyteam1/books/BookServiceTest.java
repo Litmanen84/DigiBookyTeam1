@@ -3,6 +3,7 @@
 
 import com.example.digibookyteam1.books.api.dto.BookDto;
 import com.example.digibookyteam1.books.repository.BookRepository;
+import com.example.digibookyteam1.exceptions.BookNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

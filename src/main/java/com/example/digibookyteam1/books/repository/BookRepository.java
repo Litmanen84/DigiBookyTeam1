@@ -6,10 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class BookRepository {
@@ -31,4 +29,13 @@ public class BookRepository {
     public Optional<Book > getBookByIsbn(String isbn) {
        return Optional.ofNullable(books.get(isbn));
     }
+
+    public List<Book> getBooksByPartOfIsbn(String isbnPart) {
+        return books.entrySet().stream()
+                .filter(b -> b.getKey().contains(isbnPart))
+                .map(Map.Entry::getValue)
+                .toList();
+    }
+
+
 }
