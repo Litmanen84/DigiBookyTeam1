@@ -46,6 +46,7 @@ public class Book {
     public void setSummary(String summary) {
         this.summary = summary;
     }
+
     public boolean isAvailable() {
         return isAvailable;
     }
