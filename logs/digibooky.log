@@ -45,84 +45,6 @@
 2026-10-15T12:58:59.075+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-15T12:58:59.076+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
 2026-10-15T12:58:59.149+02:00  WARN 31276 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 5b2ad255-fed7-400e-9457-62c08ea32a66 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
-2026-10-15T13:52:08.329+02:00  WARN 20616 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-15T13:52:08.331+02:00  WARN 20616 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2026-10-15T13:52:11.573+02:00 ERROR 20616 --- [DigiBookyTeam1] [http-nio-auto-1-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: com.example.digibookyteam1.books.BookNotFoundException: 9780000000002 not found] with root cause
-
-com.example.digibookyteam1.books.BookNotFoundException: 9780000000002 not found
-	at com.example.digibookyteam1.books.BookService.lambda$getBookByISBN$0(BookService.java:29) ~[classes/:na]
-	at java.base/java.util.Optional.orElseThrow(Optional.java:407) ~[na:na]
-	at com.example.digibookyteam1.books.BookService.getBookByISBN(BookService.java:28) ~[classes/:na]
-	at com.example.digibookyteam1.books.api.BookController.getBookDetails(BookController.java:27) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-11.0.24.jar:6.1]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.9.jar:7.0.9]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.24.jar:6.1]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59) ~[tomcat-embed-websocket-11.0.24.jar:11.0.24]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.9.jar:7.0.9]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74) ~[tomcat-embed-core-11.0.24.jar:11.0.24]
-	at java.base/java.lang.Thread.run(Thread.java:1516) ~[na:na]
-
-2026-10-15T13:52:12.976+02:00  WARN 20616 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-15T13:52:12.977+02:00  WARN 20616 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2026-10-15T13:52:14.763+02:00  WARN 20616 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must be valid, field=email}, {message=Email must have the form x@x.x using only letters and numbers, field=email}]
-2026-10-15T13:52:14.871+02:00  WARN 20616 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
-2026-10-15T13:52:14.880+02:00  WARN 20616 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
-2026-10-15T13:52:14.881+02:00  WARN 20616 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
-2026-10-15T13:52:15.028+02:00  WARN 20616 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 2520d074-93e2-4910-a1cc-733e572ee85c tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
-2026-10-15T13:52:55.402+02:00  WARN 22228 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-15T13:52:55.403+02:00  WARN 22228 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2026-10-15T13:52:59.634+02:00  WARN 22228 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-15T13:52:59.634+02:00  WARN 22228 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2026-10-15T13:53:01.452+02:00  WARN 22228 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must have the form x@x.x using only letters and numbers}, {field=email, message=Email must be valid}]
-2026-10-15T13:53:01.572+02:00  WARN 22228 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
-2026-10-15T13:53:01.579+02:00  WARN 22228 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
-2026-10-15T13:53:01.579+02:00  WARN 22228 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
-2026-10-15T13:53:01.716+02:00  WARN 22228 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 75ae4017-4712-4160-a844-6a74e12a9ae6 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
-2026-10-15T13:54:41.855+02:00  WARN 23204 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-15T13:54:41.856+02:00  WARN 23204 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2026-10-15T13:54:46.208+02:00  WARN 23204 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-15T13:54:46.209+02:00  WARN 23204 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
-2026-10-15T13:54:48.027+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must be valid}, {field=email, message=Email must have the form x@x.x using only letters and numbers}]
-2026-10-15T13:54:48.150+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
-2026-10-15T13:54:48.164+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
-2026-10-15T13:54:48.165+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
-2026-10-15T13:54:48.311+02:00  WARN 23204 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 105a6138-53f5-4da7-8fac-3828c5c36c7f tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
 2026-10-15T13:23:47.342+02:00  WARN 21476 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
 2026-10-15T13:23:47.343+02:00  WARN 21476 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
 2026-10-15T13:23:48.313+02:00  WARN 21476 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must be valid, field=email}, {message=Email must have the form x@x.x using only letters and numbers, field=email}]
@@ -151,6 +73,15 @@ com.example.digibookyteam1.books.BookNotFoundException: 9780000000002 not found
 2026-10-15T13:57:12.314+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-15T13:57:12.314+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
 2026-10-15T13:57:12.373+02:00  WARN 24216 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User eee2cf23-4f5d-4c1a-a14e-62d2f9d2494a tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-16T13:54:04.116+02:00  WARN 28692 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T13:54:04.118+02:00  WARN 28692 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T13:54:09.348+02:00  WARN 28692 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T13:54:09.349+02:00  WARN 28692 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T13:54:11.366+02:00  WARN 28692 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must have the form x@x.x using only letters and numbers}, {field=email, message=Email must be valid}]
+2026-10-16T13:54:11.502+02:00  WARN 28692 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T13:54:11.511+02:00  WARN 28692 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T13:54:11.511+02:00  WARN 28692 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-16T13:54:11.675+02:00  WARN 28692 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User e9ffd34d-d9d2-482a-8f51-5d0d419bb6f0 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
 2026-10-15T14:25:00.664+02:00  WARN 23200 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
 2026-10-15T14:25:00.666+02:00  WARN 23200 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
 2026-10-15T14:25:01.569+02:00  WARN 23200 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must be valid}, {field=email, message=Email must have the form x@x.x using only letters and numbers}]

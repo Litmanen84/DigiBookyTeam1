@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class BookService {
 
-    private BookRepository bookRepository;
-    private BookMapper bookMapper;
+    private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
     public BookService(BookRepository bookRepository, BookMapper bookMapper) {
         this.bookRepository = bookRepository;
@@ -47,7 +47,7 @@ public class BookService {
         }
 
         if (author != null && !author.isBlank()) {
-
+            books = getBooksByAuthor(author);
         }
 
         return books;
@@ -102,6 +102,13 @@ public class BookService {
                 .map(b -> bookMapper.toDto(b))
                 .toList();
     }
+
+    private List<BookDto> getBooksByAuthor(String name) {
+        List<Book> books = bookRepository.getBooksByAuthor(name);
+
+        return bookMapper.toDto(books);
+    }
+
 
 
     public void createBook(CreateBookDto createBookDto) {

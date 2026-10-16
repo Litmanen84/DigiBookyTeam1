@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
+  
     @ExceptionHandler(BookAlreadyExistsException.class)
     public ResponseEntity<Map<String, Object>> handleBookAlreadyExistsException(
             BookAlreadyExistsException exception) {

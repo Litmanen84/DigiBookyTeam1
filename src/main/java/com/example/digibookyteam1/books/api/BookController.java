@@ -35,7 +35,7 @@ public class BookController {
         return bookService.getBookByISBN(isbn);
     }
 
-    @GetMapping(path = "/search/{isbnPart}")
+    @GetMapping(path = "/search")
     public List<BookDto> searchBooks(
             @RequestParam(required = false) String isbn,
             @RequestParam(required = false) String title,
@@ -48,9 +48,12 @@ public class BookController {
         if (title != null && !title.isBlank()) count++;
         if (author != null && !author.isBlank()) count++;
 
-        if (count != 1) {
+        if (count > 1) {
             throw new IllegalArgumentException(
                     "Provide exactly one search parameter: isbn, title, or author");
+        }
+        if (count == 0) {
+            return bookService.getAllBooks();
         }
 
         return bookService.searchBooks(isbn, title, author);
