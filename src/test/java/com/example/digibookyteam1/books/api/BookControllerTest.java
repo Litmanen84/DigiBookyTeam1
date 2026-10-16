@@ -20,8 +20,6 @@ import static org.hamcrest.Matchers.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookControllerTest {
 
-
-
     @LocalServerPort
     private int port;
 
@@ -234,7 +232,7 @@ class BookControllerTest {
     // test > 1 param (should fail)
 
 
-}
+
     @Test
     void deleteBook_givenExistingIsbn_returnsNoContent() {
         RestAssured
@@ -401,5 +399,4 @@ class BookControllerTest {
                 .then()
                 .statusCode(401);
     }
-
 }

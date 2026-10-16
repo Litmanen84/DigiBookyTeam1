@@ -53,10 +53,6 @@ public class BookRepository {
         books.put(book.getIsbn(), book);
     }
 
-    public void addBook(Book book) {
-        books.put(book.getIsbn(), book);
-    }
-
     public Collection<Book> getAllBooks() {
         return books.values();
     }
@@ -105,15 +101,6 @@ public class BookRepository {
         book.setTitle(updateBookDto.title);
         book.setAuthor(updateBookDto.author);
         book.setSummary(updateBookDto.summary);
-    }
-
-    public List<Book> getBooksByPartOfTitle(String titlePart) {
-        return books.values().stream()
-                .filter(Book::isAvailable)
-                .filter(book -> book.getTitle()
-                        .toLowerCase(Locale.ROOT)
-                        .contains(titlePart.toLowerCase(Locale.ROOT)))
-                .toList();
     }
 
     public List<Book> getBooksByAuthor(String name) {

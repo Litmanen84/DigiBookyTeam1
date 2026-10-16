@@ -263,3 +263,20 @@ com.example.digibookyteam1.books.BookNotFoundException: swagger-ui.html not foun
 2026-10-16T15:38:34.001+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-16T15:38:34.013+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-16T15:38:34.014+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-16T16:16:55.736+02:00  WARN 8156 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T16:16:55.737+02:00  WARN 8156 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T16:16:56.664+02:00  WARN 8156 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must be valid, field=email}, {message=Email must have the form x@x.x using only letters and numbers, field=email}]
+2026-10-16T16:16:56.985+02:00  WARN 8156 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 07636931-3530-4203-b229-4407721dee7f tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-16T16:16:58.044+02:00  WARN 8156 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T16:16:58.045+02:00  WARN 8156 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T16:17:00.730+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-4] c.e.d.exceptions.GlobalExceptionHandler  : A book with ISBN 123456 already exists
+2026-10-16T16:17:00.773+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-3] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=isbn}]
+2026-10-16T16:17:01.048+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-7] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T16:17:01.205+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-9] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=summary}]
+2026-10-16T16:17:01.252+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-10] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T16:17:01.297+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-1] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=title}]
+2026-10-16T16:17:01.547+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-8] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Last name cannot be blank, field=author.lastname}]
+2026-10-16T16:17:01.659+02:00  WARN 8156 --- [DigiBookyTeam1] [http-nio-auto-1-exec-1] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T16:17:01.950+02:00  WARN 8156 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T16:17:01.965+02:00  WARN 8156 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T16:17:01.965+02:00  WARN 8156 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
