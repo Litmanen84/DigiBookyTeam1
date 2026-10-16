@@ -17,7 +17,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public List<BookDto> getBooks() {
         return bookService.getAllBooks();
     }
@@ -25,5 +25,10 @@ public class BookController {
     @GetMapping(path = "/{isbn}")
     public BookDetailsDto getBookDetails(@PathVariable String isbn) {
         return bookService.getBookByISBN(isbn);
+    }
+
+    @GetMapping
+    public List<BookDto> getBooksByAuthor(@RequestParam (required = false) String author) {
+        return bookService.getBooksByAuthor(author);
     }
 }

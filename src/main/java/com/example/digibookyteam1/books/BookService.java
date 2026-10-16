@@ -6,6 +6,7 @@ import com.example.digibookyteam1.books.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BookService {
@@ -23,11 +24,20 @@ public class BookService {
     }
 
     public BookDetailsDto getBookByISBN(String isbn) {
-        // TODO shouldn't this return a Book ? Otherwise I need to use BookMapper every time I need to get a Book from an ISBN
        Book book = bookRepository.getBookByIsbn(isbn)
                .orElseThrow(()->
                        new BookNotFoundException(isbn));
         return bookMapper.toBookDetailsDto(book);
+    }
+
+    public List<BookDto> getBooksByAuthor(String name) {
+        // null check? + contains rather than equals +
+
+
+        List<Book> books = bookRepository.getAllBooks().stream()
+                .filter(book -> Objects.equals(book.getAuthor().getFirstname(), name))
+                .toList();
+        return bookMapper.toDto(books);
     }
 
 }
