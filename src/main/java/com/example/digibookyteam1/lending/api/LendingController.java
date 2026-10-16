@@ -56,4 +56,17 @@ public class LendingController {
 
         return lendingService.getLendingsByMemberId(memberId);
     }
+
+    @GetMapping("/overdue")
+    public List<Lending> getOverdueLendings(
+            @RequestHeader(value = "Authorization", required = false)
+            String authorization) {
+
+        securityService.validateAuthorization(
+                authorization,
+                Feature.VIEW_MEMBER_LENDINGS
+        );
+
+        return lendingService.getOverdueLendings();
+    }
 }

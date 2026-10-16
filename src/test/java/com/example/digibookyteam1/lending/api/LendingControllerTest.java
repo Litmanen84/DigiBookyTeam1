@@ -133,4 +133,25 @@ class LendingControllerTest {
         verify(lendingService).getLendingsByMemberId(memberId);
     }
 
+    @Test
+    void getOverdueLendings() {
+        List<Lending> overdueLendings = List.of(mock(Lending.class));
+
+        when(lendingService.getOverdueLendings())
+                .thenReturn(overdueLendings);
+
+        List<Lending> result = lendingController.getOverdueLendings(
+                "Basic fake-credentials"
+        );
+
+        assertEquals(overdueLendings, result);
+
+        verify(securityService).validateAuthorization(
+                "Basic fake-credentials",
+                Feature.VIEW_MEMBER_LENDINGS
+        );
+
+        verify(lendingService).getOverdueLendings();
+    }
+
 }
