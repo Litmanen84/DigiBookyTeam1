@@ -1,6 +1,5 @@
 package com.example.digibookyteam1.exceptions;
 
-import com.example.digibookyteam1.books.BookNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
