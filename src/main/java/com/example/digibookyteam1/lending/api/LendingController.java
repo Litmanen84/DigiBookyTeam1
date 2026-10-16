@@ -56,7 +56,4 @@ public class LendingController {
 
         return lendingService.getLendingsByMemberId(memberId);
     }
-
-
-
 }
