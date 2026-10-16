@@ -2,13 +2,9 @@ package com.example.digibookyteam1.books.repository;
 
 import com.example.digibookyteam1.books.Author;
 import com.example.digibookyteam1.books.Book;
-import com.example.digibookyteam1.books.api.dto.BookDto;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
 public class BookRepository {
@@ -62,6 +58,15 @@ public class BookRepository {
                         .toLowerCase(Locale.ROOT)
                         .contains(titlePart.toLowerCase(Locale.ROOT)))
                 .toList();
+    }
+
+    public List<Book> getBooksByAuthor(String name) {
+        return books.values().stream()
+                .filter(Book::isAvailable)
+                .filter(book -> book.getAuthor().getFullName()
+                        .toLowerCase(Locale.ROOT)
+                        .contains(name.toLowerCase(Locale.ROOT)))
+        .toList();
     }
 
 

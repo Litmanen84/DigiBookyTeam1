@@ -1,8 +1,8 @@
 package com.example.digibookyteam1.books;
 
 public class Author {
-    private String firstname;
-    private String lastname;
+    private final String firstname;
+    private final String lastname;
     public Author(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -13,5 +13,9 @@ public class Author {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public String getFullName() {
+        return firstname + " " + lastname;
     }
 }
