@@ -6,4 +6,5 @@ public enum Feature {
     BASE_ACCESS,
     CREATE_BOOK,
     VIEW_MEMBER_LENDINGS
+    DELETE_BOOK;
 }

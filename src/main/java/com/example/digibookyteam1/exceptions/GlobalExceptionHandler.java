@@ -37,4 +37,22 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(body);
     }
+
+    @ExceptionHandler(BookAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleBookAlreadyExistsException(
+            BookAlreadyExistsException exception) {
+        String message = "A book with ISBN " + exception.getMessage() + " already exists";
+        log.warn(message);
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("message", message));
+    }
+
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleBookNotFoundException(
+            BookNotFoundException exception) {
+        String message = "Book not found: " + exception.getMessage();
+        log.warn(message);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", message));
+    }
 }
