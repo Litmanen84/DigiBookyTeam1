@@ -16,8 +16,8 @@ import java.util.UUID;
 public class LendingService {
 
     LendingRepository lendingRepository;
-    PersonRepository personRepository; // TODO might be better to use PersonService instead?
-    BookRepository bookRepository; // TODO same remark but BookService getByISBN returns a BookDetailsDTO
+    PersonRepository personRepository;
+    BookRepository bookRepository;
     LendingMapper lendingMapper;
 
     public LendingService(LendingRepository lendingRepository,
@@ -40,15 +40,20 @@ public class LendingService {
 
         UUID id = UUID.fromString(memberId);
         Person member = personRepository.getById(id)
-                .orElseThrow(() -> new RuntimeException("Member not found")); // TODO PersonService responsibility?
+                .orElseThrow(() -> new RuntimeException("Member not found"));
         Book book = bookRepository.getBookByIsbn(isbn)
-                .orElseThrow(() -> new BookNotFoundException(isbn)); // TODO this is BookService responsibility
+                .orElseThrow(() -> new BookNotFoundException(isbn));
+
+        if (lendingRepository.isBookCurrentlyLent(isbn)) {
+            throw new BookAlreadyLentException(isbn);
+        }
 
         Lending lending = new Lending(
                 UUID.randomUUID(),
-                (Member) member, // TODO hmmm shouldn't cast like that - PersonService?
-                LocalDate.now().plusDays(3),
+                (Member) member,
+                LocalDate.now().plusWeeks(3),
                 book);
+        lendingRepository.save(lending);
 
         return lendingMapper.toDto(lending);
     }
