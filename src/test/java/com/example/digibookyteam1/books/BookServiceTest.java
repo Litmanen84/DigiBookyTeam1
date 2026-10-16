@@ -7,14 +7,15 @@ import com.example.digibookyteam1.exceptions.BookNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,11 +24,15 @@ class BookServiceTest {
     @Mock
     private BookRepository bookRepository;
 
+    private BookMapper bookMapper;
+
+    @InjectMocks
     private BookService bookService;
 
     @BeforeEach
     void setup() {
-        bookService = new BookService(bookRepository, new BookMapper());
+        bookMapper = new BookMapper();
+        bookService = new BookService(bookRepository, bookMapper);
     }
 
     @Test
@@ -110,4 +115,93 @@ class BookServiceTest {
                 () -> bookService.getBookByISBN(isbn)
         );
     }
+
+
+
+    @Test
+    void searchBooksByIsbnShouldReturnBooksThatContainGivenString() {
+        Book book1 = new Book(
+                "789455519123",
+                "The Book",
+                new Author("The", "Author"),
+                "Summary"
+        );
+
+        Book book2 = new Book(
+                "2225555777888",
+                "The Book",
+                new Author("The", "Author"),
+                "Summary"
+        );
+
+        when(bookRepository.getBooksByPartOfIsbn("555"))
+                .thenReturn(List.of(book1, book2));
+
+        List<BookDto> result = bookService.searchBooks("555", null, null);
+
+        assertEquals(2, result.size());
+        assertTrue(result.stream()
+                .map(BookDto::isbn)
+                .toList()
+                .containsAll(List.of("789455519123", "2225555777888")));
+    }
+
+    @Test
+    void searchBooksByTitleShouldReturnBooksThatContainGivenString() {
+        Book book1 = new Book(
+                "789455519123",
+                "The Book",
+                new Author("The", "Author"),
+                "Summary"
+        );
+
+        Book book2 = new Book(
+                "2225555777888",
+                "Another Book",
+                new Author("The", "Author"),
+                "Summary"
+        );
+
+        when(bookRepository.getBooksByPartOfTitle("Book"))
+                .thenReturn(List.of(book1, book2));
+
+        List<BookDto> result = bookService.searchBooks(null, "Book", null);
+
+        assertEquals(2, result.size());
+        assertTrue(result.stream()
+                .map(BookDto::title)
+                .toList()
+                .containsAll(List.of("The Book", "Another Book")));
+    }
+
+    @Test
+    void searchBooksByTitleShouldIgnoreCase() {
+        Book book = new Book(
+                "789455519123",
+                "The Book",
+                new Author("The", "Author"),
+                "Summary"
+        );
+
+        when(bookRepository.getBooksByPartOfTitle("book"))
+                .thenReturn(List.of(book));
+
+        List<BookDto> result = bookService.searchBooks(null, "book", null);
+
+        assertEquals(1, result.size());
+        assertEquals("The Book", result.getFirst().title());
+    }
+
+
+
+    @Test
+    void searchBooksByTitleShouldThrowExceptionWhenNoBooksMatch() {
+        when(bookRepository.getBooksByPartOfTitle("Unknown"))
+                .thenThrow(new BookNotFoundException("Unknown not found"));
+
+        assertThrows(BookNotFoundException.class,
+                () -> bookService.searchBooks(null, "Unknown", null));
+    }
+
+
 }

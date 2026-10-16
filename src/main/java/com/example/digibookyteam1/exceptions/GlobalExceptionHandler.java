@@ -42,6 +42,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleBookNotFound(
             BookNotFoundException exception) {
 
+        log.warn("Book was not found: {}", BookNotFoundException.class.getSimpleName());
+
         Map<String, Object> body = Map.of(
                 "status", HttpStatus.NOT_FOUND.value(),
                 "error", "Book not found",

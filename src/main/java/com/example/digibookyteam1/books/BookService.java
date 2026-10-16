@@ -23,7 +23,7 @@ public class BookService {
         return bookMapper.toDto(bookRepository.getAllBooks());
     }
 
-    public BookDetailsDto getBookById(String isbn) {
+    public BookDetailsDto getBookByISBN(String isbn) {
 
         Book book = bookRepository.getBookByIsbn(isbn)
                 .orElseThrow(() ->
@@ -31,29 +31,74 @@ public class BookService {
         return bookMapper.toBookDetailsDto(book);
     }
 
-    public List<BookDto> getBooksByIsbn(String isbn) {
-        String extractedIsbnNumbers = isbn.replaceAll("\\D", "");
-        List<Book> books = List.of();
+    public List<BookDto> searchBooks(String isbn, String title, String author) {
 
+        List<BookDto> books = List.of();
+
+        if (isbn != null && !isbn.isBlank()) {
+            books = getBooksByPartialIsbn(isbn);
+        }
+
+        if (title != null && !title.isBlank()) {
+            books = getBooksByPartOfTitle(title);
+        }
+
+        if (author != null && !author.isBlank()) {
+
+        }
+
+        return books;
+
+    }
+
+    private List<BookDto> getBooksByPartialIsbn(String isbn) {
+        String extractedIsbnNumbers = isbn.replaceAll("\\D", "");
+        List<Book> books;
 
         int length = extractedIsbnNumbers.length();
+
+        if (length == 0) {
+            throw new IllegalArgumentException("ISBN must contain digits");
+        }
 
         if (length > 13) throw new IllegalArgumentException("ISBN too long");
 
         if (length == 13) {
-           books = bookRepository.getBookByIsbn(extractedIsbnNumbers).stream().toList();
-        }
-
-        if (length < 13){
+            books = bookRepository
+                    .getBookByIsbn(extractedIsbnNumbers)
+                    .stream()
+                    .toList();
+        } else {
             books = bookRepository.getBooksByPartOfIsbn(extractedIsbnNumbers);
         }
 
-        if (!books.isEmpty()) {
-           return books.stream()
-                   .map(b -> bookMapper.toDto(b))
-                   .toList();
-        } else  {
-            throw new BookNotFoundException(isbn);
+        if (books.isEmpty()) {
+            throw new BookNotFoundException(extractedIsbnNumbers);
         }
+
+        return books.stream()
+                .map(b -> bookMapper.toDto(b))
+                .toList();
     }
+
+    private List<BookDto> getBooksByPartOfTitle(String titlePart) {
+
+        List<Book> books;
+
+        if (titlePart == null || titlePart.isBlank()) {
+            throw new IllegalArgumentException("Author name is invalid");
+        }
+
+        books = bookRepository.getBooksByPartOfTitle(titlePart);
+
+        if (books.isEmpty()) {
+            throw new BookNotFoundException(titlePart);
+        }
+
+        return books.stream()
+                .map(b -> bookMapper.toDto(b))
+                .toList();
+    }
+
+
 }

@@ -22,14 +22,30 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-//    @GetMapping(path = "/{isbn}")
-//    public BookDetailsDto getBookDetails(@PathVariable String isbn) {
-//        return bookService.getBookById(isbn);
-//    }
-
     @GetMapping(path = "/{isbn}")
-    public List<BookDto> getBookByIsbn(@PathVariable String isbn) {
+    public BookDetailsDto getBookDetails(@PathVariable String isbn) {
         return bookService.getBookByISBN(isbn);
+    }
+
+    @GetMapping(path = "/search/{isbnPart}")
+    public List<BookDto> searchBooks(
+            @RequestParam(required = false) String isbn,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String author
+            ) {
+
+        int count = 0;
+
+        if (isbn != null && !isbn.isBlank()) count++;
+        if (title != null && !title.isBlank()) count++;
+        if (author != null && !author.isBlank()) count++;
+
+        if (count != 1) {
+            throw new IllegalArgumentException(
+                    "Provide exactly one search parameter: isbn, title, or author");
+        }
+
+        return bookService.searchBooks(isbn, title, author);
     }
 
 }
