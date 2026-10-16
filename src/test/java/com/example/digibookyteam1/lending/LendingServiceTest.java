@@ -12,13 +12,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LendingServiceTest {
@@ -119,5 +119,90 @@ class LendingServiceTest {
         verify(lendingRepository).save(any(Lending.class));
     }
 
+    @Test
+    void ReturnBookOnTime() {
+        UUID lendingId = UUID.randomUUID();
 
+        Address address = new Address("Switch road",
+                1,
+                1256,
+                "Sw");
+        Member member = new Member(
+                "Bo",
+                "Long",
+                "123",
+                "bo@long.be",
+                "1254896",
+                address);
+        Author author = new Author("Bo", "Bo");
+        Book book = new Book("123654",
+                "Behanzin",
+                author,
+                "Potter from Benin");
+
+        Lending lending = new Lending(
+                lendingId,
+                member,
+                LocalDate.now().plusDays(7),
+                book
+        );
+
+        when(lendingRepository.findById(lendingId))
+                .thenReturn(Optional.of(lending));
+
+        ReturnBookResult result = lendingService.returnBook(lendingId);
+
+        assertFalse(result.isLate());
+        verify(lendingRepository).deleteById(lendingId);
+    }@Test
+    void returnBookLate() {
+        UUID lendingId = UUID.randomUUID();
+
+        Address address = new Address(
+                "Switch road",
+                1,
+                1256,
+                "Sw");
+        Member member = new Member(
+                "Bo",
+                "Long",
+                "123",
+                "bo@long.be",
+                "1254896",
+                address);
+        Author author = new Author("Bo", "Bo");
+        Book book = new Book(
+                "123654",
+                "Behanzin",
+                author,
+                "Potter from Benin");
+
+        Lending lending = new Lending(
+                lendingId,
+                member,
+                LocalDate.now().minusDays(1),
+                book
+        );
+
+        when(lendingRepository.findById(lendingId))
+                .thenReturn(Optional.of(lending));
+
+        ReturnBookResult result = lendingService.returnBook(lendingId);
+
+        assertTrue(result.isLate());
+        verify(lendingRepository).deleteById(lendingId);
+    }
+
+    @Test
+    void returnBookNotFound() {
+        UUID lendingId = UUID.randomUUID();
+
+        when(lendingRepository.findById(lendingId))
+                .thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class,
+                () -> lendingService.returnBook(lendingId));
+
+        verify(lendingRepository, never()).deleteById(lendingId);
+    }
 }

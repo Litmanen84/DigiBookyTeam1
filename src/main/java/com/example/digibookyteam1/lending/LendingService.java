@@ -57,4 +57,15 @@ public class LendingService {
 
         return lendingMapper.toDto(lending);
     }
+
+    public ReturnBookResult returnBook(UUID lendingId) {
+        Lending lending = lendingRepository.findById(lendingId)
+                .orElseThrow(() -> new RuntimeException("Lending not found"));
+
+        boolean isLate = LocalDate.now().isAfter(lending.dueDate());
+
+        lendingRepository.deleteById(lendingId);
+
+        return new ReturnBookResult(lending, isLate);
+    }
 }
