@@ -46,3 +46,50 @@
 2026-10-16T14:19:40.578+02:00  WARN 24276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-16T14:19:40.590+02:00  WARN 24276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
 2026-10-16T14:19:40.591+02:00  WARN 24276 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-16T15:32:42.277+02:00  WARN 22056 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:32:42.278+02:00  WARN 22056 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:32:44.738+02:00  WARN 22056 --- [DigiBookyTeam1] [http-nio-auto-1-exec-4] c.e.d.exceptions.GlobalExceptionHandler  : A book with ISBN 123456 already exists
+2026-10-16T15:32:44.792+02:00  WARN 22056 --- [DigiBookyTeam1] [http-nio-auto-1-exec-3] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=isbn}]
+2026-10-16T15:32:44.975+02:00  WARN 22056 --- [DigiBookyTeam1] [http-nio-auto-1-exec-7] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:32:45.090+02:00  WARN 22056 --- [DigiBookyTeam1] [http-nio-auto-1-exec-10] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:32:45.275+02:00  WARN 22056 --- [DigiBookyTeam1] [http-nio-auto-1-exec-6] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:33:06.085+02:00  WARN 26036 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:33:06.087+02:00  WARN 26036 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:33:06.978+02:00  WARN 26036 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=email, message=Email must have the form x@x.x using only letters and numbers}, {field=email, message=Email must be valid}]
+2026-10-16T15:33:07.257+02:00  WARN 26036 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 8e2ce72e-f278-427c-9829-245e650bef21 tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-16T15:33:08.228+02:00  WARN 26036 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:33:08.228+02:00  WARN 26036 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:33:10.677+02:00  WARN 26036 --- [DigiBookyTeam1] [http-nio-auto-1-exec-5] c.e.d.exceptions.GlobalExceptionHandler  : A book with ISBN 123456 already exists
+2026-10-16T15:33:10.718+02:00  WARN 26036 --- [DigiBookyTeam1] [http-nio-auto-1-exec-4] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=isbn, message=must not be blank}]
+2026-10-16T15:33:10.959+02:00  WARN 26036 --- [DigiBookyTeam1] [http-nio-auto-1-exec-2] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:33:11.113+02:00  WARN 26036 --- [DigiBookyTeam1] [http-nio-auto-1-exec-8] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:33:11.397+02:00  WARN 26036 --- [DigiBookyTeam1] [http-nio-auto-1-exec-3] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:33:11.600+02:00  WARN 26036 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T15:33:11.612+02:00  WARN 26036 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T15:33:11.613+02:00  WARN 26036 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists
+2026-10-16T15:36:06.376+02:00  WARN 25604 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:36:06.378+02:00  WARN 25604 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:36:08.354+02:00  WARN 25604 --- [DigiBookyTeam1] [http-nio-auto-1-exec-1] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=title}]
+2026-10-16T15:37:14.560+02:00  WARN 26536 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:37:14.561+02:00  WARN 26536 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:37:16.737+02:00  WARN 26536 --- [DigiBookyTeam1] [http-nio-auto-1-exec-2] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=summary}]
+2026-10-16T15:38:00.105+02:00  WARN 26580 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:38:00.107+02:00  WARN 26580 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:38:01.982+02:00  WARN 26580 --- [DigiBookyTeam1] [http-nio-auto-1-exec-2] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{field=author.lastname, message=Last name cannot be blank}]
+2026-10-16T15:38:26.621+02:00  WARN 5572 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:38:26.624+02:00  WARN 5572 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:38:27.877+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Email must have the form x@x.x using only letters and numbers, field=email}, {message=Email must be valid, field=email}]
+2026-10-16T15:38:28.248+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.security.SecurityService   : User 009f62b9-256e-4556-a9d3-4aa41ba9f25e tried to access REGISTER_ADMIN_LIBRARIAN but doesn't have permission
+2026-10-16T15:38:29.569+02:00  WARN 5572 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-16T15:38:29.570+02:00  WARN 5572 --- [DigiBookyTeam1] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-16T15:38:32.807+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-2] c.e.d.exceptions.GlobalExceptionHandler  : A book with ISBN 123456 already exists
+2026-10-16T15:38:32.858+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-5] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=isbn}]
+2026-10-16T15:38:33.163+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-7] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:38:33.324+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-9] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=summary}]
+2026-10-16T15:38:33.355+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-10] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:38:33.408+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-1] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=must not be blank, field=title}]
+2026-10-16T15:38:33.710+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-8] c.e.d.exceptions.GlobalExceptionHandler  : Request validation failed: [{message=Last name cannot be blank, field=author.lastname}]
+2026-10-16T15:38:33.738+02:00  WARN 5572 --- [DigiBookyTeam1] [http-nio-auto-1-exec-9] c.e.d.exceptions.GlobalExceptionHandler  : Book not found: 9780000000002 not found
+2026-10-16T15:38:34.001+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T15:38:34.013+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : Email already exists
+2026-10-16T15:38:34.014+02:00  WARN 5572 --- [DigiBookyTeam1] [main] c.e.d.persons.PersonDatabase             : INSS already exists

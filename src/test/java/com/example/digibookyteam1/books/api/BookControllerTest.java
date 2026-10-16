@@ -1,15 +1,14 @@
 package com.example.digibookyteam1.books.api;
 
 import com.example.digibookyteam1.books.Author;
-import com.example.digibookyteam1.books.Book;
 import com.example.digibookyteam1.books.api.dto.CreateBookDto;
+import com.example.digibookyteam1.books.api.dto.UpdateBookDto;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -210,4 +209,150 @@ class BookControllerTest {
                 .then()
                 .statusCode(404);
     }
+
+    @Test
+    void updateBookUpdatesABook() {
+
+        String authorization = "Basic eXZlc0Bqb3JkeS5jb206Y2lhbzE5ODM=";
+
+        String isbn = "9" + java.util.UUID.randomUUID()
+                .toString()
+                .replace("-", "")
+                .substring(0, 12);
+
+        CreateBookDto createBookDto = new CreateBookDto(
+                isbn,
+                "Titolo originale",
+                new Author("Autore", "Originale"),
+                "Descrizione originale"
+        );
+
+        UpdateBookDto updateBookDto = new UpdateBookDto(
+                "Titolo nuovo",
+                new Author("Ciccio", "Magnotta"),
+                "Descrizione nuova"
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", authorization)
+                .body(createBookDto)
+                .when()
+                .post("/books")
+                .then()
+                .statusCode(201);
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", authorization)
+                .body(updateBookDto)
+                .when()
+                .put("/books/{isbn}", isbn)
+                .then()
+                .statusCode(200);
+
+        RestAssured.when()
+                .get("/books/{isbn}", isbn)
+                .then()
+                .statusCode(200)
+                .body("isbn", equalTo(isbn))
+                .body("title", equalTo("Titolo nuovo"))
+                .body("summary", equalTo("Descrizione nuova"));
+    }
+
+    @Test
+    void updateBook_givenUnknownIsbn_returnsNotFound() {
+        String authorization = "Basic eXZlc0Bqb3JkeS5jb206Y2lhbzE5ODM=";
+        UpdateBookDto updateBookDto = new UpdateBookDto(
+                "Titolo nuovo",
+                new Author("Ciccio", "Magnotta"),
+                "Descrizione nuova"
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", authorization)
+                .body(updateBookDto)
+                .when()
+                .put("/books/{isbn}", "9780000000002")
+                .then()
+                .statusCode(404);
+    }
+
+    @Test
+    void updateBook_givenBlankTitle_throwsException() {
+        String authorization = "Basic eXZlc0Bqb3JkeS5jb206Y2lhbzE5ODM=";
+        UpdateBookDto updateBookDto = new UpdateBookDto(
+                "",
+                new Author("Ciccio", "Magnotta"),
+                "Descrizione nuova"
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", authorization)
+                .body(updateBookDto)
+                .when()
+                .put("/books/{isbn}", "9780000000002")
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
+    void updateBook_givenBlankSummary_throwsException() {
+        String authorization = "Basic eXZlc0Bqb3JkeS5jb206Y2lhbzE5ODM=";
+        UpdateBookDto updateBookDto = new UpdateBookDto(
+                "Ciccio's Book",
+                new Author("Ciccio", "Magnotta"),
+                ""
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", authorization)
+                .body(updateBookDto)
+                .when()
+                .put("/books/{isbn}", "9780000000002")
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
+    void updateBook_givenAuthorWithoutLastName_throwsException() {
+        String authorization = "Basic eXZlc0Bqb3JkeS5jb206Y2lhbzE5ODM=";
+        UpdateBookDto updateBookDto = new UpdateBookDto(
+                "Ciccio's Book",
+                new Author("Ciccio", ""),
+                "Description"
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", authorization)
+                .body(updateBookDto)
+                .when()
+                .put("/books/{isbn}", "9780000000002")
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
+    void updateBook_givenWrongCredentials_returnsUnauthorized() {
+        String wrongAuth = "Basic eXZlc0Bqb3JkeS5jb5ODM=";
+        UpdateBookDto updateBookDto = new UpdateBookDto(
+                "Titolo nuovo",
+                new Author("Ciccio", "Magnotta"),
+                "Descrizione nuova"
+        );
+
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", wrongAuth)
+                .body(updateBookDto)
+                .when()
+                .put("/books/{isbn}", "123456")
+                .then()
+                .statusCode(401);
+    }
+
 }

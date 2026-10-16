@@ -5,5 +5,6 @@ public enum Feature {
     REGISTER_ADMIN_LIBRARIAN,
     BASE_ACCESS,
     CREATE_BOOK,
+    UPDATE_BOOK,
     DELETE_BOOK;
 }

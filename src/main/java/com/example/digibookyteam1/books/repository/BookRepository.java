@@ -2,7 +2,10 @@ package com.example.digibookyteam1.books.repository;
 
 import com.example.digibookyteam1.books.Author;
 import com.example.digibookyteam1.books.Book;
+import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
+import com.example.digibookyteam1.books.api.dto.UpdateBookDto;
+import com.example.digibookyteam1.exceptions.BookNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
@@ -75,5 +78,17 @@ public class BookRepository {
 
     public void softDeleteBook(Book book) {
         book.makeUnavailable();
+    }
+
+    public void updateBook(String isbn, UpdateBookDto updateBookDto) {
+        Book book = books.get(isbn);
+
+        if (book == null) {
+            throw new BookNotFoundException(isbn);
+        }
+
+        book.setTitle(updateBookDto.title);
+        book.setAuthor(updateBookDto.author);
+        book.setSummary(updateBookDto.summary);
     }
 }

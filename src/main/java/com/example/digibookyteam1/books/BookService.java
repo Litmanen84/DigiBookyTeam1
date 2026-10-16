@@ -3,6 +3,7 @@ package com.example.digibookyteam1.books;
 import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
 import com.example.digibookyteam1.books.api.dto.CreateBookDto;
+import com.example.digibookyteam1.books.api.dto.UpdateBookDto;
 import com.example.digibookyteam1.books.repository.BookRepository;
 import com.example.digibookyteam1.exceptions.BookNotFoundException;
 import com.example.digibookyteam1.exceptions.BookAlreadyExistsException;
@@ -118,5 +119,9 @@ public class BookService {
     public void softDeleteBook(BookDetailsDto bookDetailsDto) {
         Book book = bookMapper.fromBookDetailsDtoToBook(bookDetailsDto);
         bookRepository.softDeleteBook(book);
+    }
+
+    public void updateBook(String isbn, UpdateBookDto updateBookDto) {
+        bookRepository.updateBook(isbn, updateBookDto);
     }
 }
