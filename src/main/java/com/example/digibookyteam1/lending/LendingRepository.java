@@ -2,6 +2,7 @@ package com.example.digibookyteam1.lending;
 
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Repository
@@ -30,6 +31,12 @@ public class LendingRepository {
     public List<Lending> findByMemberId(UUID memberId) {
         return ongoingLendings.values().stream()
                 .filter(lending -> lending.member().getId().equals(memberId))
+                .toList();
+    }
+
+    public List<Lending> findOverdueLendings() {
+        return ongoingLendings.values().stream()
+                .filter(lending -> lending.dueDate().isBefore(LocalDate.now()))
                 .toList();
     }
 }

@@ -152,5 +152,26 @@ class LendingRepositoryTest {
         assertEquals(lending1, result.getFirst());
     }
 
+    @Test
+    void findOverdueLendingsShouldReturnOnlyOverdueLendings() {
+        Lending overdueLending = createLending();
+        overdueLending = new Lending(
+                overdueLending.id(),
+                overdueLending.member(),
+                LocalDate.now().minusDays(3),
+                overdueLending.book()
+        );
+
+        Lending futureLending = createLending();
+
+        lendingRepository.save(overdueLending);
+        lendingRepository.save(futureLending);
+
+        List<Lending> result = lendingRepository.findOverdueLendings();
+
+        assertEquals(1, result.size());
+        assertEquals(overdueLending, result.getFirst());
+    }
+
 
 }

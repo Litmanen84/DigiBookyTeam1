@@ -73,4 +73,10 @@ public class LendingService {
     public List<Lending> getLendingsByMemberId(UUID memberId) {
         return lendingRepository.findByMemberId(memberId);
     }
+
+    public List<Lending> getOverdueLendings() {
+        return lendingRepository.findOverdueLendings();
+    }
+
+
 }
