@@ -2,10 +2,7 @@ package com.example.digibookyteam1.lending;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 public class LendingRepository {
@@ -28,5 +25,11 @@ public class LendingRepository {
 
     public void deleteById(UUID id) {
         ongoingLendings.remove(id);
+    }
+
+    public List<Lending> findByMemberId(UUID memberId) {
+        return ongoingLendings.values().stream()
+                .filter(lending -> lending.member().getId().equals(memberId))
+                .toList();
     }
 }

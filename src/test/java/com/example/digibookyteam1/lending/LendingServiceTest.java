@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -204,5 +205,20 @@ class LendingServiceTest {
                 () -> lendingService.returnBook(lendingId));
 
         verify(lendingRepository, never()).deleteById(lendingId);
+    }
+
+    @Test
+    void getLendingByMemberId() {
+        UUID memberId = UUID.randomUUID();
+        Lending lending = mock(Lending.class);
+
+        when(lendingRepository.findByMemberId(memberId)).thenReturn(List.of(lending));
+
+        List<Lending> lendings = lendingService.getLendingsByMemberId(memberId);
+
+        assertEquals(1, lendings.size());
+        assertEquals(lending, lendings.getFirst());
+
+        verify(lendingRepository).findByMemberId(memberId);
     }
 }
