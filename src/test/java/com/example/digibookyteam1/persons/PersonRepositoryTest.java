@@ -94,12 +94,14 @@ class PersonRepositoryTest {
 
     @Test
     void getAllMembersReturnsAllMembers(){
+        db.persons.clear();
         repo.save(member);
         assertEquals(List.of(member), repo.getAllMembers());
     }
 
     @Test
     void getAllMembersReturnsEmptyListWhenNoMembers(){
+        db.persons.clear();
         assertEquals(List.of(), repo.getAllMembers());
     }
 

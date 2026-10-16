@@ -5,12 +5,14 @@ public class Book {
     private String title;
     private Author author;
     private String summary;
+    private boolean isAvailable;
 
     public Book(String isbn, String title, Author author, String summary) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.summary = summary;
+        this.isAvailable = true;
     }
 
     public String getIsbn() {
@@ -43,5 +45,15 @@ public class Book {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void makeUnavailable(){
+        isAvailable = false;
+    }
+    public void makeAvailable(){
+        isAvailable = true;
     }
 }
