@@ -3,6 +3,11 @@ package com.example.digibookyteam1.books.api;
 import com.example.digibookyteam1.books.BookService;
 import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
+import com.example.digibookyteam1.books.api.dto.CreateBookDto;
+import com.example.digibookyteam1.persons.enums.Feature;
+import com.example.digibookyteam1.persons.security.SecurityService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,10 +16,12 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    BookService bookService;
+    private final BookService bookService;
+    private final SecurityService securityService;
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, SecurityService securityService) {
         this.bookService = bookService;
+        this.securityService = securityService;
     }
 
     @GetMapping
@@ -48,4 +55,21 @@ public class BookController {
         return bookService.searchBooks(isbn, title, author);
     }
 
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createBook(@Valid @RequestBody CreateBookDto createBookDto, @RequestHeader(value = "Authorization", required = false) String authorization) {
+        securityService.validateAuthorization(authorization, Feature.CREATE_BOOK);
+        bookService.createBook(createBookDto);
+    }
+
+    @DeleteMapping(path = "/{isbn}")
+    @ResponseStatus(HttpStatus.OK)
+    public void softDeleteBook(@PathVariable String isbn, @RequestHeader(value = "Authorization", required = false) String authorization){
+        securityService.validateAuthorization(authorization, Feature.DELETE_BOOK);
+        //if there is no book with this isbn, it will throw an exception and the book will not be deleted
+        BookDetailsDto bookDetailsDto = bookService.getBookByISBN(isbn);
+        //if there is a book with this isbn, it will soft delete the book
+        bookService.softDeleteBook(bookDetailsDto);
+    }
 }
+

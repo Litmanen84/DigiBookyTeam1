@@ -65,7 +65,15 @@ public class BookRepository {
     }
 
 
+    public void createBook(Book book) {
+        books.put(book.getIsbn(), book);
+    }
 
+    public boolean isBookAlreadyPresent(String isbn) {
+        return books.containsKey(isbn);
+    }
 
-
+    public void softDeleteBook(Book book) {
+        book.makeUnavailable();
+    }
 }

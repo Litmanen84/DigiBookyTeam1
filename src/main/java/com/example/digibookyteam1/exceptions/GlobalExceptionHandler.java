@@ -1,5 +1,6 @@
 package com.example.digibookyteam1.exceptions;
 
+import com.example.digibookyteam1.books.BookNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -38,18 +39,21 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
+    @ExceptionHandler(BookAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleBookAlreadyExistsException(
+            BookAlreadyExistsException exception) {
+        String message = "A book with ISBN " + exception.getMessage() + " already exists";
+        log.warn(message);
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("message", message));
+    }
+
     @ExceptionHandler(BookNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleBookNotFound(
+    public ResponseEntity<Map<String, Object>> handleBookNotFoundException(
             BookNotFoundException exception) {
-
-        log.warn("Book was not found: {}", BookNotFoundException.class.getSimpleName());
-
-        Map<String, Object> body = Map.of(
-                "status", HttpStatus.NOT_FOUND.value(),
-                "error", "Book not found",
-                "message", exception.getMessage()
-        );
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+        String message = "Book not found: " + exception.getMessage();
+        log.warn(message);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", message));
     }
 }
