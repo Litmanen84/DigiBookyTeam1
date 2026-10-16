@@ -1,7 +1,7 @@
 package com.example.digibookyteam1.lending;
 
 import com.example.digibookyteam1.books.Book;
-import com.example.digibookyteam1.books.BookNotFoundException;
+import com.example.digibookyteam1.exceptions.BookNotFoundException;
 import com.example.digibookyteam1.books.repository.BookRepository;
 import com.example.digibookyteam1.lending.api.LendingDTO;
 import com.example.digibookyteam1.persons.Member;

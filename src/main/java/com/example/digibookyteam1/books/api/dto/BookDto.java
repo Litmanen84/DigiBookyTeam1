@@ -7,4 +7,5 @@ public record BookDto(
         String title,
         Author author
 ) {
+
 }
