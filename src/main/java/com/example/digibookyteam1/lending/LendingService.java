@@ -10,6 +10,7 @@ import com.example.digibookyteam1.persons.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -68,4 +69,14 @@ public class LendingService {
 
         return new ReturnBookResult(lending, isLate);
     }
+
+    public List<Lending> getLendingsByMemberId(UUID memberId) {
+        return lendingRepository.findByMemberId(memberId);
+    }
+
+    public List<Lending> getOverdueLendings() {
+        return lendingRepository.findOverdueLendings();
+    }
+
+
 }

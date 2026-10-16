@@ -12,7 +12,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -79,5 +82,76 @@ class LendingControllerTest {
 
        assertEquals("Book has been returned but YOU ARE LATE MATE", returnBookResponse.message());
    }
+
+   @Test
+    void getLendingByMemberIdAsLibrarian(){
+       UUID memberId = UUID.randomUUID();
+
+       List<Lending> lendings = List.of(mock(Lending.class));
+
+       when(lendingService.getLendingsByMemberId(memberId)).thenReturn(lendings);
+
+       List<Lending> result = lendingController.getLendingsByMemberId(memberId,"Basic fake-credentials");
+
+       assertEquals(1, result.size());
+       assertEquals(lendings, result);
+    }
+
+    @Test
+    void getLendingsByMemberIdAsMemberShouldBeForbidden() {
+        UUID memberId = UUID.randomUUID();
+
+        doThrow(new ResponseStatusException(HttpStatus.FORBIDDEN))
+                .when(securityService)
+                .validateAuthorization(
+                        anyString(),
+                        eq(Feature.VIEW_MEMBER_LENDINGS)
+                );
+        ResponseStatusException exception = assertThrows(
+                ResponseStatusException.class,
+                () -> lendingController.getLendingsByMemberId(
+                        memberId, "Basic fake-credentials")
+        );
+
+        assertEquals(HttpStatus.FORBIDDEN, exception.getStatusCode());
+
+        verify(lendingService, never()).getLendingsByMemberId(any());
+    }
+
+    @Test
+    void getLendingsByMemberIdWhenNoLendingsShouldReturnEmptyList() {
+        UUID memberId = UUID.randomUUID();
+
+        when(lendingService.getLendingsByMemberId(memberId))
+                .thenReturn(List.of());
+
+        List<Lending> result = lendingController.getLendingsByMemberId(
+                memberId, "Basic fake-credentials");
+
+        assertTrue(result.isEmpty());
+
+        verify(lendingService).getLendingsByMemberId(memberId);
+    }
+
+    @Test
+    void getOverdueLendings() {
+        List<Lending> overdueLendings = List.of(mock(Lending.class));
+
+        when(lendingService.getOverdueLendings())
+                .thenReturn(overdueLendings);
+
+        List<Lending> result = lendingController.getOverdueLendings(
+                "Basic fake-credentials"
+        );
+
+        assertEquals(overdueLendings, result);
+
+        verify(securityService).validateAuthorization(
+                "Basic fake-credentials",
+                Feature.VIEW_MEMBER_LENDINGS
+        );
+
+        verify(lendingService).getOverdueLendings();
+    }
 
 }

@@ -2,8 +2,11 @@ package com.example.digibookyteam1.books;
 
 import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
+import com.example.digibookyteam1.books.api.dto.CreateBookDto;
+import com.example.digibookyteam1.books.api.dto.UpdateBookDto;
 import com.example.digibookyteam1.books.repository.BookRepository;
 import com.example.digibookyteam1.exceptions.BookNotFoundException;
+import com.example.digibookyteam1.exceptions.BookAlreadyExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -107,4 +110,25 @@ public class BookService {
     }
 
 
+
+    public void createBook(CreateBookDto createBookDto) {
+        if (isBookPresentAlready(createBookDto.getIsbn())){
+            throw new BookAlreadyExistsException(createBookDto.getIsbn());
+        }
+        Book book = bookMapper.fromCreateBookToBook(createBookDto);
+        bookRepository.createBook(book);
+    }
+
+    public boolean isBookPresentAlready(String isbn) {
+        return bookRepository.isBookAlreadyPresent(isbn);
+    }
+
+    public void softDeleteBook(BookDetailsDto bookDetailsDto) {
+        Book book = bookMapper.fromBookDetailsDtoToBook(bookDetailsDto);
+        bookRepository.softDeleteBook(book);
+    }
+
+    public void updateBook(String isbn, UpdateBookDto updateBookDto) {
+        bookRepository.updateBook(isbn, updateBookDto);
+    }
 }

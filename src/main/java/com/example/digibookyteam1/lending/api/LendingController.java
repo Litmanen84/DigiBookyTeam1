@@ -1,5 +1,6 @@
 package com.example.digibookyteam1.lending.api;
 
+import com.example.digibookyteam1.lending.Lending;
 import com.example.digibookyteam1.lending.LendingService;
 import com.example.digibookyteam1.lending.ReturnBookResult;
 import com.example.digibookyteam1.persons.PersonService;
@@ -8,6 +9,7 @@ import com.example.digibookyteam1.persons.security.SecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -45,4 +47,26 @@ public class LendingController {
         return new ReturnBookResponse("Book has been returned");
     }
 
+    @GetMapping("/member/{memberId}")
+    public List<Lending> getLendingsByMemberId(@PathVariable UUID memberId,
+                                               @RequestHeader (value = "Authorization",
+                                                       required = false) String authorization) {
+        securityService.validateAuthorization(authorization, Feature.VIEW_MEMBER_LENDINGS);
+
+
+        return lendingService.getLendingsByMemberId(memberId);
+    }
+
+    @GetMapping("/overdue")
+    public List<Lending> getOverdueLendings(
+            @RequestHeader(value = "Authorization", required = false)
+            String authorization) {
+
+        securityService.validateAuthorization(
+                authorization,
+                Feature.VIEW_MEMBER_LENDINGS
+        );
+
+        return lendingService.getOverdueLendings();
+    }
 }
