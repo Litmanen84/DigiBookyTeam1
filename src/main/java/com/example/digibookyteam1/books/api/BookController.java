@@ -4,6 +4,7 @@ import com.example.digibookyteam1.books.BookService;
 import com.example.digibookyteam1.books.api.dto.BookDetailsDto;
 import com.example.digibookyteam1.books.api.dto.BookDto;
 import com.example.digibookyteam1.books.api.dto.CreateBookDto;
+import com.example.digibookyteam1.books.api.dto.UpdateBookDto;
 import com.example.digibookyteam1.persons.enums.Feature;
 import com.example.digibookyteam1.persons.security.SecurityService;
 import jakarta.validation.Valid;
@@ -70,6 +71,16 @@ public class BookController {
         BookDetailsDto bookDetailsDto = bookService.getBookByISBN(isbn);
         //if there is a book with this isbn, it will soft delete the book
         bookService.softDeleteBook(bookDetailsDto);
+    }
+
+    @PutMapping(path = "/{isbn}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateBook(@PathVariable String isbn, @RequestHeader(value = "Authorization", required = false) String authorization, @Valid @RequestBody UpdateBookDto updateBookDto) {
+        securityService.validateAuthorization(authorization, Feature.UPDATE_BOOK);
+        //if there is no book with this isbn, it will throw an exception and the book will not be updated
+        bookService.getBookByISBN(isbn);
+        //if there is a book with this isbn, it will update it
+        bookService.updateBook(isbn, updateBookDto);
     }
 }
 
